@@ -2,8 +2,9 @@
  Get started as a contributor
 ##############################
 
-Prerequisites
-*************
+***************
+ Prerequisites
+***************
 
 - `Python 3.9 <https://docs.python.org/3.9/>`_ or above
 - `Poetry 1.3 <https://python-poetry.org/>`_ or above
@@ -14,8 +15,9 @@ Flower uses ``pyproject.toml`` to manage dependencies and configure development 
 (the ones which support it). Poetry is a build tool which supports `PEP 517
 <https://peps.python.org/pep-0517/>`_.
 
-Developer Machine Setup
-***********************
+*************************
+ Developer Machine Setup
+*************************
 
 Preliminaries
 =============
@@ -83,8 +85,9 @@ Create Flower Dev Environment
            (your-env-name) $ cd framework
            (your-env-name) $ python -m poetry install --all-extras
 
-Convenience Scripts
-*******************
+*********************
+ Convenience Scripts
+*********************
 
 The Flower repository contains a number of convenience scripts to make recurring
 development tasks easier and less error-prone. See the ``/dev`` subdirectory for a full
@@ -161,8 +164,9 @@ Flower main cloned repository folder:
 The Flower default workflow would run by setting up the required Docker machines
 underneath.
 
-Build Release
-*************
+***************
+ Build Release
+***************
 
 Flower uses Poetry to build releases. The necessary command is wrapped in a simple
 script:
@@ -174,8 +178,9 @@ script:
 The resulting ``.whl`` and ``.tar.gz`` releases will be stored in the
 ``./framework/dist`` subdirectory.
 
-Build Documentation
-*******************
+*********************
+ Build Documentation
+*********************
 
 Flower's documentation uses `Sphinx <https://www.sphinx-doc.org/>`_. To build the
 documentation locally, run the following script:

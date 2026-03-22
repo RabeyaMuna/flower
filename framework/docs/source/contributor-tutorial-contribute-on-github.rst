@@ -9,8 +9,9 @@ If you're familiar with how contributing on GitHub works, you can directly check
 :doc:`getting started guide for contributors
 <contributor-tutorial-get-started-as-a-contributor>`.
 
-Setting up the repository
-*************************
+***************************
+ Setting up the repository
+***************************
 
 1. **Create a GitHub account and setup Git**
        Git is a distributed version control tool. This allows for an entire codebase's
@@ -102,16 +103,18 @@ Setting up the repository
 
            $ git pull upstream main
 
-Setting up the coding environment
-*********************************
+***********************************
+ Setting up the coding environment
+***********************************
 
 This can be achieved by following this :doc:`getting started guide for contributors
 <contributor-tutorial-get-started-as-a-contributor>` (note that you won't need to clone
 the repository). Once you are able to write code and test it, you can finally start
 making changes!
 
-Making changes
-**************
+****************
+ Making changes
+****************
 
 Before making any changes make sure you are up-to-date with your repository:
 
@@ -183,8 +186,9 @@ And with Flower's repository:
        Once this is done, you will see on the GitHub that your forked repo was updated
        with the changes you have made.
 
-Creating and merging a pull request (PR)
-****************************************
+******************************************
+ Creating and merging a pull request (PR)
+******************************************
 
 1. **Create the PR**
        Once you have pushed changes, on the GitHub webpage of your repository you should
@@ -272,8 +276,9 @@ Creating and merging a pull request (PR)
            $ git pull upstream main # to update the local repository
            $ git push origin main # to push the changes to the remote repository
 
-Example of first contribution
-*****************************
+*******************************
+ Example of first contribution
+*******************************
 
 Problem
 =======
@@ -343,8 +348,9 @@ Open PR
 - Wait for it to be approved!
 - Congrats! 🥳 You're now officially a Flower contributor!
 
-Next steps
-**********
+************
+ Next steps
+************
 
 Once you have made your first PR, and want to contribute more, be sure to check out the
 following :
@@ -352,8 +358,9 @@ following :
 - :doc:`Good first contributions <contributor-ref-good-first-contributions>`, where you
   should particularly look into the ``baselines`` contributions.
 
-Appendix
-********
+**********
+ Appendix
+**********
 
 .. _pr_title_format:
 

@@ -2,8 +2,9 @@
  Install development versions
 ##############################
 
-Install development versions of Flower
-**************************************
+****************************************
+ Install development versions of Flower
+****************************************
 
 Using Poetry (recommended)
 ==========================
@@ -58,8 +59,9 @@ Install ``flwr`` from a specific GitHub branch (``branch-name``):
   'flwr[simulation]@git+https://github.com/adap/flower.git@branch-name#subdirectory=framework'``
   (with extras)
 
-Open Jupyter Notebooks on Google Colab
-**************************************
+****************************************
+ Open Jupyter Notebooks on Google Colab
+****************************************
 
 Open the notebook
 ``framework/docs/source/tutorial-series-get-started-with-flower-pytorch.ipynb``:

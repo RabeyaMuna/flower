@@ -2,12 +2,14 @@
  [<CODE>] <NAME>
 #################
 
-Description
-***********
+*************
+ Description
+*************
 
 <DESCRIPTION>
 
-How to Resolve
-**************
+****************
+ How to Resolve
+****************
 
 <RESOLUTION_STEPS>

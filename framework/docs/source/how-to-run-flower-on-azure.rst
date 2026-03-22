@@ -36,8 +36,9 @@ On the Federation server VM we will deploy the long-running Flower server
 Flower client (``SuperNode``). For more details For more details regarding the
 ``SuperLink`` and ``SuperNode`` concepts, please see the |flower_architecture_link|_ .
 
-Azure VMs
-*********
+***********
+ Azure VMs
+***********
 
 First we need to create the three VMs configure their Python environments, and inbound
 networking rules to allow cross-VM communication.
@@ -149,8 +150,9 @@ Otherwise, we change the properties as follows:
     - - **Destination port ranges**
       - ``9093``
 
-Flower Environment
-******************
+********************
+ Flower Environment
+********************
 
 Assuming we have been able to login to each VM, and create a Python environment with
 Flower and all its dependencies installed (``pip install flwr``), we can create a Flower
@@ -213,8 +215,9 @@ project structure from one of them. Once we have the project locally, we can ope
 
 Then from our local machine we need to run ``flwr run . my-federation``.
 
-Next Steps
-**********
+************
+ Next Steps
+************
 
 .. warning::
 

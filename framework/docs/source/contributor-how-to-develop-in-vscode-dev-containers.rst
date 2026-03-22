@@ -23,8 +23,9 @@ the VSCode Remote Containers extension. What is it? Read the following quote:
 Source: `Official VSCode documentation
 <https://code.visualstudio.com/docs/devcontainers/containers>`_
 
-Getting started
-***************
+*****************
+ Getting started
+*****************
 
 Configuring and setting up the ``Dockerfile`` as well the configuration for the
 devcontainer can be a bit more involved. The good thing is you don't have to do it.

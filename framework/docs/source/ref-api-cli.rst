@@ -2,8 +2,9 @@
  Flower CLI reference
 ######################
 
-Basic Commands
-**************
+****************
+ Basic Commands
+****************
 
 .. _flwr-apiref:
 
@@ -34,8 +35,9 @@ Basic Commands
     :func: _parse_args_run_supernode
     :prog: flower-supernode
 
-Advanced Commands
-*****************
+*******************
+ Advanced Commands
+*******************
 
 .. _flwr-serverapp-apiref:
 
@@ -57,8 +59,9 @@ Advanced Commands
     :func: _parse_args_run_flwr_clientapp
     :prog: flwr-clientapp
 
-Technical Commands
-******************
+********************
+ Technical Commands
+********************
 
 .. _flower-simulation-apiref:
 

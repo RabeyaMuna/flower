@@ -4,8 +4,9 @@
 
 This reference provides an index of all exit codes and recommended resolutions.
 
-Categories
-**********
+************
+ Categories
+************
 
 - **Success exit codes (0-99)**: Indicate successful completion of processes.
 - **SuperLink-specific exit codes (100-199)**: Specific to ``flower-superlink``
@@ -20,8 +21,9 @@ Categories
   (Simulation Engine) errors.
 - **Common exit codes (600-)**: Shared across multiple components.
 
-Indices
-*******
+*********
+ Indices
+*********
 
 .. toctree::
     :maxdepth: 1

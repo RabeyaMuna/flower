@@ -8,8 +8,9 @@
 Welcome to Flower's documentation. `Flower <https://flower.ai>`_ is a friendly federated
 learning framework.
 
-Join the Flower Community
-*************************
+***************************
+ Join the Flower Community
+***************************
 
 The Flower Community is growing quickly - we're a friendly group of researchers,
 engineers, students, professionals, academics, and other enthusiasts.
@@ -20,8 +21,9 @@ engineers, students, professionals, academics, and other enthusiasts.
 
     Join us on Slack
 
-Flower Framework
-****************
+******************
+ Flower Framework
+******************
 
 The user guide is targeted at researchers and developers who want to use Flower to bring
 existing machine learning workloads into a federated setting. One of Flower's design

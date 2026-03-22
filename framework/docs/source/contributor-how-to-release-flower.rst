@@ -5,8 +5,9 @@
 This document describes the current release process. It may or may not change in the
 future.
 
-During the release
-******************
+********************
+ During the release
+********************
 
 The version number of a release is stated in ``./framework/pyproject.toml``. To release
 a new version of Flower, the following things need to happen (in that order):
@@ -22,8 +23,9 @@ a new version of Flower, the following things need to happen (in that order):
    correct artifacts and the relevant part of the changelog.
 3. Check the draft release on GitHub, and if everything is good, publish it.
 
-After the release
-*****************
+*******************
+ After the release
+*******************
 
 Create a pull request which contains the following changes:
 
@@ -36,8 +38,9 @@ Create a pull request which contains the following changes:
 Merge the pull request on the same day (i.e., before a new nightly release gets
 published to PyPI).
 
-Publishing a pre-release
-************************
+**************************
+ Publishing a pre-release
+**************************
 
 Pre-release naming
 ==================

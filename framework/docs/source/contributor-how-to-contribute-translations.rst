@@ -15,8 +15,9 @@ Our translation project is publicly available over on `Weblate
 <https://hosted.weblate.org/projects/flower-docs/framework/>`_, this where most of the
 work will happen.
 
-Contribute to existing languages
-********************************
+**********************************
+ Contribute to existing languages
+**********************************
 
 .. youtube:: 10_Xfy5BOfQ
     :width: 100%
@@ -61,8 +62,9 @@ the string.
 For more information about translating using Weblate, you can check out this `in-depth
 guide <https://docs.weblate.org/en/latest/user/translating.html>`_.
 
-Add new languages
-*****************
+*******************
+ Add new languages
+*******************
 
 If you want to add a new language, you will first have to contact us, either on `Slack
 <https://flower.ai/join-slack>`_, or by opening an issue on our `GitHub repo
