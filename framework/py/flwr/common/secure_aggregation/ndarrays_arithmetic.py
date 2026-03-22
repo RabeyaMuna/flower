@@ -14,11 +14,17 @@
 # ==============================================================================
 """Utility functions for performing operations on Numpy NDArrays."""
 
+from __future__ import annotations
 
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import numpy as np
-from numpy.typing import DTypeLike, NDArray
+
+if TYPE_CHECKING:
+    from numpy.typing import DTypeLike, NDArray
+else:
+    DTypeLike = Any
+    NDArray = Any
 
 
 def factor_combine(factor: int, parameters: list[NDArray[Any]]) -> list[NDArray[Any]]:
