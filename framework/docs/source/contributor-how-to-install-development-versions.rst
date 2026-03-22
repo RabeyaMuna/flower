@@ -1,11 +1,12 @@
-Install development versions
-============================
+##############################
+ Install development versions
+##############################
 
 Install development versions of Flower
---------------------------------------
+**************************************
 
 Using Poetry (recommended)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+==========================
 
 Install a ``flwr`` pre-release from PyPI: update the ``flwr`` dependency in
 ``pyproject.toml`` and then reinstall (don't forget to delete ``poetry.lock`` (``rm
@@ -30,7 +31,7 @@ Please refer to the Poetry documentation for further details: `Poetry Dependency
 Specification <https://python-poetry.org/docs/dependency-specification/>`_
 
 Using pip (recommended on Colab)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+================================
 
 Install a ``flwr`` pre-release from PyPI:
 
@@ -58,7 +59,7 @@ Install ``flwr`` from a specific GitHub branch (``branch-name``):
   (with extras)
 
 Open Jupyter Notebooks on Google Colab
---------------------------------------
+**************************************
 
 Open the notebook
 ``framework/docs/source/tutorial-series-get-started-with-flower-pytorch.ipynb``:

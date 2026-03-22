@@ -1,5 +1,6 @@
-Set up a virtual env
-====================
+######################
+ Set up a virtual env
+######################
 
 It is recommended to run your Python setup within a virtual environment. This guide
 shows three different examples how to create a virtual environment with pyenv
@@ -7,7 +8,7 @@ virtualenv, poetry, or Anaconda. You can follow the instructions or choose your
 preferred setup.
 
 Python Version
---------------
+**************
 
 Flower requires at least `Python 3.9 <https://docs.python.org/3.9/>`_, but `Python 3.10
 <https://docs.python.org/3.10/>`_ or above is recommended.
@@ -19,7 +20,7 @@ Flower requires at least `Python 3.9 <https://docs.python.org/3.9/>`_, but `Pyth
     for running Flower simulations.
 
 Virtualenv with Pyenv/Virtualenv
---------------------------------
+********************************
 
 One of the recommended virtual environment is `pyenv
 <https://github.com/pyenv/pyenv>`_/`virtualenv
@@ -46,7 +47,7 @@ Activate the virtualenv by running the following command:
     echo flower-3.10.12 > .python-version
 
 Virtualenv with Poetry
-----------------------
+**********************
 
 The Flower examples are based on `Poetry <https://python-poetry.org/docs/>`_ to manage
 dependencies. After installing Poetry you simply create a virtual environment with:
@@ -63,7 +64,7 @@ with the following command:
     source $(poetry env info --path)/bin/activate
 
 Virtualenv with Anaconda
-------------------------
+************************
 
 If you prefer to use Anaconda for your virtual environment then install and setup the
 `conda <https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html>`_

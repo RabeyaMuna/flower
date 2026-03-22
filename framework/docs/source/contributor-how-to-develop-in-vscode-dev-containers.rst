@@ -1,5 +1,6 @@
-Develop in VSCode Dev Containers
-================================
+##################################
+ Develop in VSCode Dev Containers
+##################################
 
 When working on the Flower framework we want to ensure that all contributors use the
 same developer environment to format code or run tests. For this purpose we are using
@@ -23,7 +24,7 @@ Source: `Official VSCode documentation
 <https://code.visualstudio.com/docs/devcontainers/containers>`_
 
 Getting started
----------------
+***************
 
 Configuring and setting up the ``Dockerfile`` as well the configuration for the
 devcontainer can be a bit more involved. The good thing is you don't have to do it.

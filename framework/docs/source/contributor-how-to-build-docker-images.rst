@@ -1,5 +1,6 @@
-How to Build Docker Flower Images Locally
-=========================================
+###########################################
+ How to Build Docker Flower Images Locally
+###########################################
 
 Flower provides pre-made docker images on `Docker Hub <https://hub.docker.com/u/flwr>`_
 that include all necessary dependencies for running the SuperLink, SuperNode or
@@ -29,7 +30,7 @@ environment.
    the tables below.
 
 Building the Base Image
------------------------
+***********************
 
 .. list-table::
     :widths: 25 45 15 15
@@ -95,7 +96,7 @@ Remember that the build arguments as well as the name and tag can be adapted to 
 needs. These values serve as examples only.
 
 Building a Flower Binary Image
-------------------------------
+******************************
 
 .. list-table::
     :widths: 25 45 15 15
@@ -144,7 +145,7 @@ After creating the image, we can test whether the image is working:
     $ docker run --rm flwr_superlink:0.1.0 --help
 
 Direct Reference Examples
--------------------------
+*************************
 
 .. code-block:: bash
     :substitutions:

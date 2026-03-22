@@ -1,7 +1,8 @@
-[3] GRACEFUL_EXIT_SIGTERM
-=========================
+###########################
+ [3] GRACEFUL_EXIT_SIGTERM
+###########################
 
 Description
------------
+***********
 
 The process exited gracefully, triggered by ``SIGTERM``.

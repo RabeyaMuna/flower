@@ -1,7 +1,8 @@
 .. _quickstart-ios:
 
-Quickstart iOS
-==============
+################
+ Quickstart iOS
+################
 
 .. meta::
     :description: Read this Federated Learning quickstart tutorial for creating an iOS app using Flower to train a neural network on MNIST.
@@ -45,7 +46,7 @@ Or Poetry:
     $ poetry add flwr
 
 Flower Client
--------------
+*************
 
 Now that we have all our dependencies installed, let's run a simple distributed training
 using CoreML as our local training pipeline and MNIST as our dataset. For simplicity
@@ -153,7 +154,7 @@ and port in the application before clicking the start button to start the federa
 learning process.
 
 Flower Server
--------------
+*************
 
 For simple workloads we can start a Flower server and leave all the configuration
 possibilities at their default values. In a file named ``server.py``, import Flower and
@@ -166,7 +167,7 @@ start the server:
     fl.server.start_server(config=fl.server.ServerConfig(num_rounds=3))
 
 Train the model, federated!
----------------------------
+***************************
 
 With both client and server ready, we can now run everything and see federated learning
 in action. FL systems usually have a server and multiple clients. We therefore have to

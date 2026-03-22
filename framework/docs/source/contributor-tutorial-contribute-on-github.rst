@@ -1,5 +1,6 @@
-Contribute on GitHub
-====================
+######################
+ Contribute on GitHub
+######################
 
 This guide is for people who want to get involved with Flower, but who are not used to
 contributing to GitHub projects.
@@ -9,7 +10,7 @@ If you're familiar with how contributing on GitHub works, you can directly check
 <contributor-tutorial-get-started-as-a-contributor>`.
 
 Setting up the repository
--------------------------
+*************************
 
 1. **Create a GitHub account and setup Git**
        Git is a distributed version control tool. This allows for an entire codebase's
@@ -102,7 +103,7 @@ Setting up the repository
            $ git pull upstream main
 
 Setting up the coding environment
----------------------------------
+*********************************
 
 This can be achieved by following this :doc:`getting started guide for contributors
 <contributor-tutorial-get-started-as-a-contributor>` (note that you won't need to clone
@@ -110,7 +111,7 @@ the repository). Once you are able to write code and test it, you can finally st
 making changes!
 
 Making changes
---------------
+**************
 
 Before making any changes make sure you are up-to-date with your repository:
 
@@ -183,7 +184,7 @@ And with Flower's repository:
        with the changes you have made.
 
 Creating and merging a pull request (PR)
-----------------------------------------
+****************************************
 
 1. **Create the PR**
        Once you have pushed changes, on the GitHub webpage of your repository you should
@@ -272,10 +273,10 @@ Creating and merging a pull request (PR)
            $ git push origin main # to push the changes to the remote repository
 
 Example of first contribution
------------------------------
+*****************************
 
 Problem
-~~~~~~~
+=======
 
 For our documentation, we've started to use the `Diàtaxis framework
 <https://diataxis.fr/>`_.
@@ -297,7 +298,7 @@ Before: "How to saving progress" ❌
 After: "How to save progress" ✅
 
 Solution
-~~~~~~~~
+========
 
 This is a tiny change, but it'll allow us to test your end-to-end setup. After cloning
 and setting up the Flower repo, here's what you should do:
@@ -309,7 +310,7 @@ and setting up the Flower repo, here's what you should do:
   <contributor-how-to-write-documentation.html#edit-an-existing-page>`_
 
 Rename file
-+++++++++++
+-----------
 
 You might have noticed that the file name still reflects the old wording. If we just
 change the file, then we break all existing links to it - it is **very important** to
@@ -324,7 +325,7 @@ This will cause a redirect from ``saving-progress.html`` to ``save-progress.html
 links will continue to work.
 
 Apply changes in the index file
-+++++++++++++++++++++++++++++++
+-------------------------------
 
 For the lateral navigation bar to work properly, it is very important to update the
 ``index.rst`` file as well. This is where we define the whole arborescence of the
@@ -333,7 +334,7 @@ navbar.
 - Find and modify the file name in ``index.rst``
 
 Open PR
-+++++++
+-------
 
 - Commit the changes (commit messages are always imperative: "Do something", in this
   case "Change …")
@@ -343,7 +344,7 @@ Open PR
 - Congrats! 🥳 You're now officially a Flower contributor!
 
 Next steps
-----------
+**********
 
 Once you have made your first PR, and want to contribute more, be sure to check out the
 following :
@@ -352,12 +353,12 @@ following :
   should particularly look into the ``baselines`` contributions.
 
 Appendix
---------
+********
 
 .. _pr_title_format:
 
 PR title format
-~~~~~~~~~~~~~~~
+===============
 
 We enforce the following PR title format:
 

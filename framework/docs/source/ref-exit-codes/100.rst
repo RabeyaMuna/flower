@@ -1,8 +1,9 @@
-[100] SUPERLINK_THREAD_CRASH
-============================
+##############################
+ [100] SUPERLINK_THREAD_CRASH
+##############################
 
 Description
------------
+***********
 
 A critical background thread has crashed in the SuperLink, causing it to exit
 prematurely. This indicates a serious issue with the SuperLink that requires immediate
@@ -16,7 +17,7 @@ Critical background threads include:
    Fleet API type is set to ``rest``.
 
 How to Resolve
---------------
+**************
 
 1. Check the logs for any errors that may have caused the thread to crash.
 2. Ensure the SuperLink's configuration is correct.

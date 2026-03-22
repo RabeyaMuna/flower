@@ -14,8 +14,9 @@
 
 .. _flower_docker_index: docker/index.html
 
-Run Flower on Azure
-===================
+#####################
+ Run Flower on Azure
+#####################
 
 .. note::
 
@@ -36,13 +37,13 @@ Flower client (``SuperNode``). For more details For more details regarding the
 ``SuperLink`` and ``SuperNode`` concepts, please see the |flower_architecture_link|_ .
 
 Azure VMs
----------
+*********
 
 First we need to create the three VMs configure their Python environments, and inbound
 networking rules to allow cross-VM communication.
 
 VM Create
-~~~~~~~~~
+=========
 
 Assuming we are already inside the Microsoft Azure portal, we navigate to the ``Create``
 page and we select ``Azure virtual machine``. In the new page, for each VM we edit the
@@ -81,7 +82,7 @@ our local machine by running the following command (by default Azure creates the
     ssh -i <PATH_TO_PEM_FILE> azureuser@<PUBLIC_IP>
 
 VM Networking
-~~~~~~~~~~~~~
+=============
 
 During the execution of the Flower application, the server VM (``SuperLink``) will be
 responsible to orchestrate the execution of the application across the client VMs
@@ -149,7 +150,7 @@ Otherwise, we change the properties as follows:
       - ``9093``
 
 Flower Environment
-------------------
+******************
 
 Assuming we have been able to login to each VM, and create a Python environment with
 Flower and all its dependencies installed (``pip install flwr``), we can create a Flower
@@ -164,7 +165,7 @@ type of the Flower Framework we want to run, e.g., ``numpy``.
     to the |flower_docker_index|_ guide.
 
 Server Initialization
-~~~~~~~~~~~~~~~~~~~~~
+=====================
 
 After configuring the Flower application environment, we proceed by starting the Flower
 long-running processes (i.e., ``SuperLink`` and ``SuperNode``) at each VM instance. In
@@ -193,7 +194,7 @@ and then at each client (``SuperNode``).
       --superlink="SUPERLINK_PUBLIC_IP:9092"  # SuperLink public ip and port
 
 Run Flower App
-~~~~~~~~~~~~~~
+==============
 
 Finally, after all running Flower processes have been initialized on the Microsoft Azure
 cluster, in our local machine, we first need to install Flower and can create a project
@@ -213,7 +214,7 @@ project structure from one of them. Once we have the project locally, we can ope
 Then from our local machine we need to run ``flwr run . my-federation``.
 
 Next Steps
-----------
+**********
 
 .. warning::
 

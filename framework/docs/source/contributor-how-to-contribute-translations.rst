@@ -1,5 +1,6 @@
-Contribute translations
-=======================
+#########################
+ Contribute translations
+#########################
 
 Since `Flower 1.5
 <https://flower.ai/docs/framework/ref-changelog.html#v1-5-0-2023-08-31>`_ we have
@@ -15,7 +16,7 @@ Our translation project is publicly available over on `Weblate
 work will happen.
 
 Contribute to existing languages
---------------------------------
+********************************
 
 .. youtube:: 10_Xfy5BOfQ
     :width: 100%
@@ -61,7 +62,7 @@ For more information about translating using Weblate, you can check out this `in
 guide <https://docs.weblate.org/en/latest/user/translating.html>`_.
 
 Add new languages
------------------
+*****************
 
 If you want to add a new language, you will first have to contact us, either on `Slack
 <https://flower.ai/join-slack>`_, or by opening an issue on our `GitHub repo

@@ -1,5 +1,6 @@
-Secure Aggregation Protocols
-============================
+##############################
+ Secure Aggregation Protocols
+##############################
 
 .. note::
 
@@ -18,7 +19,7 @@ more protocols in the future, one may also implement their own custom secure agg
 protocol via low-level APIs.
 
 The ``SecAgg+`` protocol in Flower
-----------------------------------
+**********************************
 
 The ``SecAgg+`` protocol is implemented using the ``SecAggPlusWorkflow`` in the
 ``ServerApp`` and the ``secaggplus_mod`` in the ``ClientApp``. The ``SecAgg`` protocol

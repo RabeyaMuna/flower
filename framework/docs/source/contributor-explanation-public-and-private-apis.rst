@@ -1,5 +1,6 @@
-Public and private APIs
-=======================
+#########################
+ Public and private APIs
+#########################
 
 In Python, everything is public. To enable developers to understand which components can
 be relied upon, Flower declares a public API. Components that are part of the public API
@@ -20,7 +21,7 @@ document explains how Flower maintainers define the public API and how you can d
 whether a component is part of the public API or not by reading the Flower source code.
 
 Flower public API
------------------
+*****************
 
 Flower has a well-defined public API. Let's look at this in more detail.
 
@@ -107,7 +108,7 @@ This approach is also implemented in the tooling that automatically builds API r
 docs.
 
 Flower public API of private packages
--------------------------------------
+*************************************
 
 We also use this to define the public API of private subpackages. Public, in this
 context, means the API that other ``flwr`` subpackages should use. For example,
