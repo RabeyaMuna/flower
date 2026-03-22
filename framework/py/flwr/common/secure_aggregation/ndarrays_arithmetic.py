@@ -16,15 +16,10 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any
+from typing import Any
 
 import numpy as np
-
-if TYPE_CHECKING:
-    from numpy.typing import DTypeLike, NDArray
-else:
-    DTypeLike = Any
-    NDArray = Any
+from numpy.typing import NDArray
 
 
 def factor_combine(factor: int, parameters: list[NDArray[Any]]) -> list[NDArray[Any]]:
@@ -45,7 +40,7 @@ def get_parameters_shape(parameters: list[NDArray[Any]]) -> list[tuple[int, ...]
 
 
 def get_zero_parameters(
-    dimensions_list: list[tuple[int, ...]], dtype: DTypeLike = np.int64
+    dimensions_list: list[tuple[int, ...]], dtype: Any = np.int64
 ) -> list[NDArray[Any]]:
     """Generate zero parameters based on the dimensions list."""
     return [np.zeros(dimensions, dtype=dtype) for dimensions in dimensions_list]
