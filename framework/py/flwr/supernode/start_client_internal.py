@@ -390,6 +390,7 @@ def _push_messages(
                     # Wait for the content to be available
                     time.sleep(0.5)
 
+                assert content is not None
                 yield tree.object_id, content
 
         # Send the message
