@@ -21,7 +21,7 @@ import unittest
 from collections import OrderedDict
 from io import BytesIO
 from types import ModuleType
-from typing import Any, Optional
+from typing import Any, Optional, cast
 from unittest.mock import Mock, call, patch
 
 import numpy as np
@@ -392,7 +392,7 @@ class TestArrayRecord(unittest.TestCase):
             ArrayRecord.inflate(arr_rec_b)
         # Inflate but passing wrong Children type
         with pytest.raises(ValueError):
-            ArrayRecord.inflate(arr_rec_b, children={"123": np.array(5)})  # type: ignore
+            ArrayRecord.inflate(arr_rec_b, children=cast(Any, {"123": np.array(5)}))
         # Inflate but passing children with wrong Object ID
         with pytest.raises(ValueError):
             ArrayRecord.inflate(arr_rec_b, children={"123": Array(arr)})
