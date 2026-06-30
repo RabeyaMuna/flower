@@ -59,7 +59,7 @@ def aggregate_inplace(results: list[tuple[ClientProxy, FitRes]]) -> NDArrays:
         return cast(
             NDArray,
             (
-                np_binary_op(x, y, out=x)
+                np_binary_op(x, y_array, out=x)
                 if np.can_cast(y_array.dtype, x.dtype, casting="same_kind")
                 else np_binary_op(x, np.array(y, x.dtype), out=x)
             ),
