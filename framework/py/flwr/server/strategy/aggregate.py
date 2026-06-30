@@ -55,7 +55,7 @@ def aggregate_inplace(results: list[tuple[ClientProxy, FitRes]]) -> NDArrays:
     def _try_inplace(
         x: NDArray, y: Union[NDArray, np.float64], np_binary_op: np.ufunc
     ) -> NDArray:
-        y_array = np.asarray(y)
+        y_array: np.ndarray[Any, Any] = np.asarray(y)
         return cast(
             NDArray,
             (
