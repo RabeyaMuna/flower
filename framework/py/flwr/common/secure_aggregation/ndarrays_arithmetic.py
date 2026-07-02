@@ -42,11 +42,7 @@ default_numpy_dtype = np.dtype(np.int64)
 
 
 def get_zero_parameters(
-<<<<<<< ours
     dimensions_list: list[tuple[int, ...]], dtype: np.dtype = np.int64
-=======
-    dimensions_list: list[tuple[int, ...]], dtype: np.dtype[Any] = default_numpy_dtype
->>>>>>> theirs
 ) -> list[NDArray[Any]]:
     """Generate zero parameters based on the dimensions list."""
     return [np.zeros(dimensions, dtype=dtype) for dimensions in dimensions_list]
