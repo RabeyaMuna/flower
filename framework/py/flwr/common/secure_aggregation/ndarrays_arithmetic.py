@@ -23,9 +23,7 @@ from numpy.typing import NDArray
 default_numpy_dtype = np.dtype(np.int64)
 
 
-def factor_combine(
-    factor: int, parameters: list[NDArray[Any]]
-) -> list[NDArray[Any]]:
+def factor_combine(factor: int, parameters: list[NDArray[Any]]) -> list[NDArray[Any]]:
     """Combine factor with parameters."""
     return [np.array([factor])] + parameters
 
@@ -57,10 +55,7 @@ def parameters_addition(
     parameters2: list[NDArray[Any]],
 ) -> list[NDArray[Any]]:
     """Add two parameters."""
-    return [
-        parameters1[idx] + parameters2[idx]
-        for idx in range(len(parameters1))
-    ]
+    return [parameters1[idx] + parameters2[idx] for idx in range(len(parameters1))]
 
 
 def parameters_subtraction(
@@ -68,10 +63,7 @@ def parameters_subtraction(
     parameters2: list[NDArray[Any]],
 ) -> list[NDArray[Any]]:
     """Subtract parameters from the other parameters."""
-    return [
-        parameters1[idx] - parameters2[idx]
-        for idx in range(len(parameters1))
-    ]
+    return [parameters1[idx] - parameters2[idx] for idx in range(len(parameters1))]
 
 
 def parameters_mod(
