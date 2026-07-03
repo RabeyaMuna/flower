@@ -19,7 +19,6 @@ from typing import Any, Union
 import numpy as np
 from numpy.typing import NDArray
 
-
 # Canonical dtype definition (single source of truth)
 default_numpy_dtype = np.dtype(np.int64)
 
