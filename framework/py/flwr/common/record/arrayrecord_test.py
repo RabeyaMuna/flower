@@ -392,7 +392,8 @@ class TestArrayRecord(unittest.TestCase):
             ArrayRecord.inflate(arr_rec_b)
         # Inflate but passing wrong Children type
         with pytest.raises(ValueError):
-            ArrayRecord.inflate(arr_rec_b, children={"123": np.array(5)})  # type: ignore
+            unsupported_children: dict[str, Any] = {"123": np.array(5)}
+            ArrayRecord.inflate(arr_rec_b, children=unsupported_children)
         # Inflate but passing children with wrong Object ID
         with pytest.raises(ValueError):
             ArrayRecord.inflate(arr_rec_b, children={"123": Array(arr)})
