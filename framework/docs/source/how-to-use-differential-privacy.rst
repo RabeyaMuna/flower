@@ -1,9 +1,16 @@
-:og:description: Apply differential privacy in Flower with server-side/client-side clipping or local DP techniques to enhance data security in federated learning.
-.. meta::
-    :description: Apply differential privacy in Flower with server-side/client-side clipping or local DP techniques to enhance data security in federated learning.
+:og:description: Apply differential privacy in Flower with server-side/client-side
+    clipping or local DP techniques to enhance data security in federated learning.
 
-Use Differential Privacy
-========================
+.. meta::
+:description: Apply differential privacy in Flower with server-side/client-side clipping or local DP techniques to enhance data security in federated learning.
+
+<<<<<<< ours
+# Use Differential Privacy
+=======
+##########################
+ Use Differential Privacy
+##########################
+>>>>>>> theirs
 
 This guide explains how you can utilize differential privacy in the Flower framework. If
 you are not yet familiar with differential privacy, you can refer to
@@ -11,12 +18,19 @@ you are not yet familiar with differential privacy, you can refer to
 
 .. warning::
 
-    Differential Privacy in Flower is in a preview phase. If you plan to use these
-    features in a production environment with sensitive data, feel free contact us to
-    discuss your requirements and to receive guidance on how to best use these features.
+```
+Differential Privacy in Flower is in a preview phase. If you plan to use these
+features in a production environment with sensitive data, feel free contact us to
+discuss your requirements and to receive guidance on how to best use these features.
+```
 
-Central Differential Privacy
-----------------------------
+<<<<<<< ours
+## Central Differential Privacy
+=======
+******************************
+ Central Differential Privacy
+******************************
+>>>>>>> theirs
 
 This approach consists of two separate phases: clipping of the updates and adding noise
 to the aggregated model. For the clipping phase, Flower framework has made it possible
@@ -32,7 +46,12 @@ to decide whether to perform clipping on the server side or the client side.
   centralized control, as the server has less control over the clipping process.
 
 Server-side Clipping
-~~~~~~~~~~~~~~~~~~~~
+<<<<<<< ours
+
+```
+=======
+====================
+>>>>>>> theirs
 
 For central DP with server-side clipping, there are two ``Strategy`` classes that act as
 wrappers around the actual ``Strategy`` instance (for example, ``FedAvg``). The two
@@ -65,95 +84,116 @@ the corresponding input parameters.
     )
 
 Client-side Clipping
-~~~~~~~~~~~~~~~~~~~~
+<<<<<<< ours
+```
+=======
+====================
+>>>>>>> theirs
 
 For central DP with client-side clipping, the server sends the clipping value to
-selected clients on each round. Clients can use existing Flower ``Mods`` to perform the
+selected clients on each round. Clients can use existing Flower `Mods` to perform the
 clipping. Two mods are available for fixed and adaptive client-side clipping:
-``fixedclipping_mod`` and ``adaptiveclipping_mod`` with corresponding server-side
-wrappers ``DifferentialPrivacyClientSideFixedClipping`` and
-``DifferentialPrivacyClientSideAdaptiveClipping``.
+`fixedclipping_mod` and `adaptiveclipping_mod` with corresponding server-side
+wrappers `DifferentialPrivacyClientSideFixedClipping` and
+`DifferentialPrivacyClientSideAdaptiveClipping`.
 
-.. image:: ./_static/DP/clientsideCDP.png
-    :align: center
-    :width: 800
-    :alt: client side clipping
+.. image:: ./\_static/DP/clientsideCDP.png
+:align: center
+:width: 800
+:alt: client side clipping
 
-The code sample below enables the ``FedAvg`` strategy to use differential privacy with
-client-side fixed clipping using both the ``DifferentialPrivacyClientSideFixedClipping``
-wrapper class and, on the client, ``fixedclipping_mod``:
-
-.. code-block:: python
-
-    from flwr.server.strategy import DifferentialPrivacyClientSideFixedClipping, FedAvg
-
-    # Create the strategy
-    strategy = FedAvg(...)
-
-    # Wrap the strategy with the DifferentialPrivacyClientSideFixedClipping wrapper
-    dp_strategy = DifferentialPrivacyClientSideFixedClipping(
-        strategy,
-        cfg.noise_multiplier,
-        cfg.clipping_norm,
-        cfg.num_sampled_clients,
-    )
-
-In addition to the server-side strategy wrapper, the ``ClientApp`` needs to configure
-the matching ``fixedclipping_mod`` to perform the client-side clipping:
+The code sample below enables the `FedAvg` strategy to use differential privacy with
+client-side fixed clipping using both the `DifferentialPrivacyClientSideFixedClipping`
+wrapper class and, on the client, `fixedclipping_mod`:
 
 .. code-block:: python
 
-    from flwr.client import ClientApp
-    from flwr.client.mod import fixedclipping_mod
+```
+from flwr.server.strategy import DifferentialPrivacyClientSideFixedClipping, FedAvg
 
-    # Add fixedclipping_mod to the client-side mods
-    app = ClientApp(
-        client_fn=client_fn,
-        mods=[
-            fixedclipping_mod,
-        ],
-    )
+# Create the strategy
+strategy = FedAvg(...)
 
-Local Differential Privacy
---------------------------
+# Wrap the strategy with the DifferentialPrivacyClientSideFixedClipping wrapper
+dp_strategy = DifferentialPrivacyClientSideFixedClipping(
+    strategy,
+    cfg.noise_multiplier,
+    cfg.clipping_norm,
+    cfg.num_sampled_clients,
+)
+```
+
+In addition to the server-side strategy wrapper, the `ClientApp` needs to configure
+the matching `fixedclipping_mod` to perform the client-side clipping:
+
+.. code-block:: python
+
+```
+from flwr.client import ClientApp
+from flwr.client.mod import fixedclipping_mod
+
+# Add fixedclipping_mod to the client-side mods
+app = ClientApp(
+    client_fn=client_fn,
+    mods=[
+        fixedclipping_mod,
+    ],
+)
+```
+
+<<<<<<< ours
+## Local Differential Privacy
+=======
+****************************
+ Local Differential Privacy
+****************************
+>>>>>>> theirs
 
 To utilize local differential privacy (DP) and add noise to the client model parameters
 before transmitting them to the server in Flower, you can use the `LocalDpMod`. The
 following hyperparameters need to be set: clipping norm value, sensitivity, epsilon, and
 delta.
 
-.. image:: ./_static/DP/localdp.png
-    :align: center
-    :width: 700
-    :alt: local DP mod
+.. image:: ./\_static/DP/localdp.png
+:align: center
+:width: 700
+:alt: local DP mod
 
-Below is a code example that shows how to use ``LocalDpMod``:
+Below is a code example that shows how to use `LocalDpMod`:
 
 .. code-block:: python
 
-    from flwr.client import ClientApp
-    from flwr.client.mod import LocalDpMod
+```
+from flwr.client import ClientApp
+from flwr.client.mod import LocalDpMod
 
-    # Create an instance of the mod with the required params
-    local_dp_obj = LocalDpMod(cfg.clipping_norm, cfg.sensitivity, cfg.epsilon, cfg.delta)
+# Create an instance of the mod with the required params
+local_dp_obj = LocalDpMod(cfg.clipping_norm, cfg.sensitivity, cfg.epsilon, cfg.delta)
 
-    # Add local_dp_obj to the client-side mods
-    app = ClientApp(
-        client_fn=client_fn,
-        mods=[
-            local_dp_obj,
-        ],
-    )
+# Add local_dp_obj to the client-side mods
+app = ClientApp(
+    client_fn=client_fn,
+    mods=[
+        local_dp_obj,
+    ],
+)
+```
 
 Please note that the order of mods, especially those that modify parameters, is
 important when using multiple modifiers. Typically, differential privacy (DP) modifiers
 should be the last to operate on parameters.
 
 Local Training using Privacy Engines
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<<<<<<< ours
+
+```
+=======
+====================================
+>>>>>>> theirs
 
 For ensuring data instance-level privacy during local model training on the client side,
 consider leveraging privacy engines such as Opacus and TensorFlow Privacy. For examples
 of using Flower with these engines, please refer to the Flower examples directory
 (`Opacus <https://github.com/adap/flower/tree/main/examples/opacus>`_, `Tensorflow
 Privacy <https://github.com/adap/flower/tree/main/examples/tensorflow-privacy>`_).
+```

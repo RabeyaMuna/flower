@@ -1,12 +1,35 @@
-[<CODE>] <NAME>
-===============
+<<<<<<< ours
+###################
+ \[<CODE>\] <NAME>
+###################
+
+----
 
 Description
------------
+
+----
 
 <DESCRIPTION>
 
-How to Resolve
---------------
+----
 
-<RESOLUTION_STEPS>
+How to Resolve
+=======
+#################
+ [<CODE>] <NAME>
+#################
+
+*************
+ Description
+*************
+
+<DESCRIPTION>
+
+****************
+ How to Resolve
+****************
+>>>>>>> theirs
+
+----
+
+\<RESOLUTION_STEPS>

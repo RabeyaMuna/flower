@@ -1,49 +1,71 @@
 :og:description: Upgrade seamlessly from Flower 0.x to Flower 1.0 with this guide.
-.. meta::
-    :description: Upgrade seamlessly from Flower 0.x to Flower 1.0 with this guide.
 
-Upgrade to Flower 1.0
-=====================
+.. meta::
+:description: Upgrade seamlessly from Flower 0.x to Flower 1.0 with this guide.
+
+<<<<<<< ours
+# Upgrade to Flower 1.0
+=======
+#######################
+ Upgrade to Flower 1.0
+#######################
+>>>>>>> theirs
 
 .. note::
 
-    This guide is for users who have already worked with Flower 0.x and want to upgrade
-    to Flower 1.0. Newer versions of Flower (1.13 and later) are based on a new
-    architecture and not covered in this guide. After upgrading Flower 0.x projects to
-    Flower 1.0, please refer to :doc:`Upgrade to Flower 1.13
-    <how-to-upgrade-to-flower-1.13>` to make your project compatible with the lastest
-    version of Flower.
+```
+This guide is for users who have already worked with Flower 0.x and want to upgrade
+to Flower 1.0. Newer versions of Flower (1.13 and later) are based on a new
+architecture and not covered in this guide. After upgrading Flower 0.x projects to
+Flower 1.0, please refer to :doc:`Upgrade to Flower 1.13
+<how-to-upgrade-to-flower-1.13>` to make your project compatible with the lastest
+version of Flower.
+```
 
 Flower 1.0 is here. Along with new features, Flower 1.0 provides a stable foundation for
 future growth. Compared to Flower 0.19 (and other 0.x series releases), there are a few
 breaking changes that make it necessary to change the code of existing 0.x-series
 projects.
 
-Install update
---------------
+<<<<<<< ours
+## Install update
+=======
+****************
+ Install update
+****************
+>>>>>>> theirs
 
 Here's how to update an existing installation to Flower 1.0 using either pip or Poetry:
 
-- pip: add ``-U`` when installing.
+- pip: add `-U` when installing.
 
-  - ``python -m pip install -U flwr`` (when using ``start_server`` and ``start_client``)
-  - ``python -m pip install -U 'flwr[simulation]'`` (when using ``start_simulation``)
+  - `python -m pip install -U flwr` (when using `start_server` and `start_client`)
+  - `python -m pip install -U 'flwr[simulation]'` (when using `start_simulation`)
 
-- Poetry: update the ``flwr`` dependency in ``pyproject.toml`` and then reinstall (don't
-  forget to delete ``poetry.lock`` via ``rm poetry.lock`` before running ``poetry
-  install``).
+- Poetry: update the `flwr` dependency in `pyproject.toml` and then reinstall (don't
+  forget to delete `poetry.lock` via `rm poetry.lock` before running `poetry install`).
 
-  - ``flwr = "^1.0.0"`` (when using ``start_server`` and ``start_client``)
-  - ``flwr = { version = "^1.0.0", extras = ["simulation"] }`` (when using
-    ``start_simulation``)
+  - `flwr = "^1.0.0"` (when using `start_server` and `start_client`)
+  - `flwr = { version = "^1.0.0", extras = ["simulation"] }` (when using
+    `start_simulation`)
 
-Required changes
-----------------
+<<<<<<< ours
+## Required changes
+=======
+******************
+ Required changes
+******************
+>>>>>>> theirs
 
 The following breaking changes require manual updates.
 
 General
-~~~~~~~
+<<<<<<< ours
+
+````
+=======
+=======
+>>>>>>> theirs
 
 Pass all arguments as keyword arguments (not as positional arguments). Here's an
 example:
@@ -53,7 +75,7 @@ example:
   client=FlowerClient())``
 
 Client
-~~~~~~
+======
 
 - Subclasses of ``NumPyClient``: change ``def get_parameters(self):``` to ``def
   get_parameters(self, config):``
@@ -61,50 +83,59 @@ Client
   get_parameters(self, ins: GetParametersIns):``
 
 Strategies / ``start_server`` / ``start_simulation``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<<<<<<< ours
+````
 
-- Pass ``ServerConfig`` (instead of a dictionary) to ``start_server`` and
-  ``start_simulation``. Here's an example:
+- Pass `ServerConfig` (instead of a dictionary) to `start_server` and
+  `start_simulation`. Here's an example:
+=======
+====================================================
+>>>>>>> theirs
 
-  - Flower 0.19: ``start_server(..., config={"num_rounds": 3, "round_timeout": 600.0},
-    ...)``
-  - Flower 1.0: ``start_server(..., config=flwr.server.ServerConfig(num_rounds=3,
-    round_timeout=600.0), ...)``
+  - Flower 0.19: `start_server(..., config={"num_rounds": 3, "round_timeout": 600.0}, ...)`
+  - Flower 1.0: `start_server(..., config=flwr.server.ServerConfig(num_rounds=3, round_timeout=600.0), ...)`
 
-- Replace ``num_rounds=1`` in ``start_simulation`` with the new
-  ``config=ServerConfig(...)`` (see previous item)
-- Remove ``force_final_distributed_eval`` parameter from calls to ``start_server``.
+- Replace `num_rounds=1` in `start_simulation` with the new
+  `config=ServerConfig(...)` (see previous item)
+
+- Remove `force_final_distributed_eval` parameter from calls to `start_server`.
   Distributed evaluation on all clients can be enabled by configuring the strategy to
   sample all clients for evaluation after the last round of training.
+
 - Rename parameter/ndarray conversion functions:
 
-  - ``parameters_to_weights`` --> ``parameters_to_ndarrays``
-  - ``weights_to_parameters`` --> ``ndarrays_to_parameters``
+  - `parameters_to_weights` --> `parameters_to_ndarrays`
+  - `weights_to_parameters` --> `ndarrays_to_parameters`
 
 - Strategy initialization: if the strategy relies on the default values for
-  ``fraction_fit`` and ``fraction_evaluate``, set ``fraction_fit`` and
-  ``fraction_evaluate`` manually to ``0.1``. Projects that do not manually create a
-  strategy (by calling ``start_server`` or ``start_simulation`` without passing a
-  strategy instance) should now manually initialize FedAvg with ``fraction_fit`` and
-  ``fraction_evaluate`` set to ``0.1``.
-- Rename built-in strategy parameters (e.g., ``FedAvg``):
+  `fraction_fit` and `fraction_evaluate`, set `fraction_fit` and
+  `fraction_evaluate` manually to `0.1`. Projects that do not manually create a
+  strategy (by calling `start_server` or `start_simulation` without passing a
+  strategy instance) should now manually initialize FedAvg with `fraction_fit` and
+  `fraction_evaluate` set to `0.1`.
 
-  - ``fraction_eval`` --> ``fraction_evaluate``
-  - ``min_eval_clients`` --> ``min_evaluate_clients``
-  - ``eval_fn`` --> ``evaluate_fn``
+- Rename built-in strategy parameters (e.g., `FedAvg`):
 
-- Rename ``rnd`` to ``server_round``. This impacts multiple methods and functions, for
-  example, ``configure_fit``, ``aggregate_fit``, ``configure_evaluate``,
-  ``aggregate_evaluate``, and ``evaluate_fn``.
-- Add ``server_round`` and ``config`` to ``evaluate_fn``:
+  - `fraction_eval` --> `fraction_evaluate`
+  - `min_eval_clients` --> `min_evaluate_clients`
+  - `eval_fn` --> `evaluate_fn`
 
-  - Flower 0.19: ``def evaluate(parameters: NDArrays) -> Optional[Tuple[float, Dict[str,
-    Scalar]]]:``
-  - Flower 1.0: ``def evaluate(server_round: int, parameters: NDArrays, config:
-    Dict[str, Scalar]) -> Optional[Tuple[float, Dict[str, Scalar]]]:``
+- Rename `rnd` to `server_round`. This impacts multiple methods and functions, for
+  example, `configure_fit`, `aggregate_fit`, `configure_evaluate`,
+  `aggregate_evaluate`, and `evaluate_fn`.
+
+- Add `server_round` and `config` to `evaluate_fn`:
+
+  - Flower 0.19: `def evaluate(parameters: NDArrays) -> Optional[Tuple[float, Dict[str, Scalar]]]:`
+  - Flower 1.0: `def evaluate(server_round: int, parameters: NDArrays, config: Dict[str, Scalar]) -> Optional[Tuple[float, Dict[str, Scalar]]]:`
 
 Custom strategies
-~~~~~~~~~~~~~~~~~
+<<<<<<< ours
+
+```
+=======
+=================
+>>>>>>> theirs
 
 - The type of parameter ``failures`` has changed from ``List[BaseException]`` to
   ``List[Union[Tuple[ClientProxy, FitRes], BaseException]]`` (in ``aggregate_fit``) and
@@ -118,8 +149,9 @@ Custom strategies
   - Flower 1.0: ``def evaluate(self, server_round: int, parameters: Parameters) ->
     Optional[Tuple[float, Dict[str, Scalar]]]:``
 
-Optional improvements
----------------------
+***********************
+ Optional improvements
+***********************
 
 Along with the necessary changes above, there are a number of potential improvements
 that just became possible:
@@ -130,11 +162,13 @@ that just became possible:
 - Configure the round timeout via ``start_simulation``: ``start_simulation(...,
   config=flwr.server.ServerConfig(num_rounds=3, round_timeout=600.0), ...)``
 
-Further help
-------------
+**************
+ Further help
+**************
 
 Most official `Flower code examples
 <https://github.com/adap/flower/tree/main/examples>`_ are already updated to Flower 1.0,
 they can serve as a reference for using the Flower 1.0 API. If there are further
 questions, `join the Flower Slack <https://flower.ai/join-slack/>`_ and use the channel
 ``#questions``.
+```
