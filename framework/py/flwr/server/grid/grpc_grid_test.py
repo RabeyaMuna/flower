@@ -24,7 +24,7 @@ import grpc
 from flwr.app.error import Error
 from flwr.common import RecordDict
 from flwr.common.constant import SUPERLINK_NODE_ID
-from flwr.common.inflatable import get_all_nested_objects
+from flwr.common.inflatable import get_all_nested_objects, get_object_tree
 from flwr.common.message import Message
 from flwr.common.serde import message_to_proto
 from flwr.proto.appio_pb2 import (  # pylint: disable=E0611
