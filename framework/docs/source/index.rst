@@ -1,107 +1,61 @@
 ################################
-<<<<<<< ours
-<<<<<<< ours
  Flower Framework Documentation
-=======
-Flower Framework Documentation
->>>>>>> theirs
-=======
- Flower Framework Documentation
->>>>>>> theirs
 ################################
 
 .. meta::
-:description: Check out the documentation of the main Flower Framework enabling easy Python development for Federated Learning.
+    :description: Check out the documentation of the main Flower Framework enabling easy Python development for Federated Learning.
 
-Welcome to Flower's documentation. `Flower <https://flower.ai>`\_ is a friendly federated
+Welcome to Flower's documentation. `Flower <https://flower.ai>`_ is a friendly federated
 learning framework.
 
-<<<<<<< ours
-<<<<<<< ours
 ***************************
  Join the Flower Community
 ***************************
-=======
-______________________________________________________________________
-
-Join the Flower Community
-
-______________________________________________________________________
->>>>>>> theirs
-=======
-***************************
- Join the Flower Community
-***************************
->>>>>>> theirs
 
 The Flower Community is growing quickly - we're a friendly group of researchers,
 engineers, students, professionals, academics, and other enthusiasts.
 
 .. button-link:: https://flower.ai/join-slack
-:color: primary
-:shadow:
+    :color: primary
+    :shadow:
 
-```
-Join us on Slack
-```
+    Join us on Slack
 
-<<<<<<< ours
-______________________________________________________________________
-
-<<<<<<< ours
 ******************
  Flower Framework
 ******************
-=======
-Flower Framework
-
-______________________________________________________________________
->>>>>>> theirs
-=======
-******************
- Flower Framework
-******************
->>>>>>> theirs
 
 The user guide is targeted at researchers and developers who want to use Flower to bring
 existing machine learning workloads into a federated setting. One of Flower's design
 goals was to make this simple. Read on to learn more.
 
-<<<<<<< ours
 Tutorials
 =========
-<<<<<<< ours
-=======
-# Tutorials
->>>>>>> theirs
-=======
->>>>>>> theirs
 
 A learning-oriented series of federated learning tutorials, the best place to start.
 
 .. toctree::
-:maxdepth: 1
-:caption: Tutorial
+    :maxdepth: 1
+    :caption: Tutorial
 
-```
-tutorial-series-what-is-federated-learning
-tutorial-series-get-started-with-flower-pytorch
-tutorial-series-use-a-federated-learning-strategy-pytorch
-tutorial-series-build-a-strategy-from-scratch-pytorch
-tutorial-series-customize-the-client-pytorch
-```
+    tutorial-series-what-is-federated-learning
+    tutorial-series-get-started-with-flower-pytorch
+    tutorial-series-use-a-federated-learning-strategy-pytorch
+    tutorial-series-build-a-strategy-from-scratch-pytorch
+    tutorial-series-customize-the-client-pytorch
 
 .. toctree::
-:maxdepth: 1
-:hidden:
+    :maxdepth: 1
+    :hidden:
 
-```
-tutorial-quickstart
-```
+    tutorial-quickstart
 
-QUICKSTART TUTORIALS: :doc:`PyTorch <tutorial-quickstart-pytorch>` | :doc:`TensorFlow <tutorial-quickstart-tensorflow>` | :doc:`MLX <tutorial-quickstart-mlx>` | :doc:`🤗 Transformers <tutorial-quickstart-huggingface>` | :doc:`JAX <tutorial-quickstart-jax>` |
+QUICKSTART TUTORIALS: :doc:`PyTorch <tutorial-quickstart-pytorch>` | :doc:`TensorFlow
+<tutorial-quickstart-tensorflow>` | :doc:`MLX <tutorial-quickstart-mlx>` | :doc:`🤗
+Transformers <tutorial-quickstart-huggingface>` | :doc:`JAX <tutorial-quickstart-jax>` |
 :doc:`Pandas <tutorial-quickstart-pandas>` | :doc:`fastai <tutorial-quickstart-fastai>`
-| :doc:`PyTorch Lightning <tutorial-quickstart-pytorch-lightning>` | :doc:`scikit-learn <tutorial-quickstart-scikitlearn>` | :doc:`XGBoost <tutorial-quickstart-xgboost>` |
+| :doc:`PyTorch Lightning <tutorial-quickstart-pytorch-lightning>` | :doc:`scikit-learn
+<tutorial-quickstart-scikitlearn>` | :doc:`XGBoost <tutorial-quickstart-xgboost>` |
 :doc:`Android <tutorial-quickstart-android>` | :doc:`iOS <tutorial-quickstart-ios>`
 
 .. We also made video tutorials for PyTorch:
@@ -116,90 +70,54 @@ QUICKSTART TUTORIALS: :doc:`PyTorch <tutorial-quickstart-pytorch>` | :doc:`Tenso
 
 .. :width: 80%
 
-<<<<<<< ours
 How-to Guides
 =============
-<<<<<<< ours
-=======
-# How-to Guides
->>>>>>> theirs
-=======
->>>>>>> theirs
 
 Problem-oriented how-to guides show step-by-step how to achieve a specific goal.
 
 .. toctree::
-:titlesonly:
-:caption: How-to Guides
+    :titlesonly:
+    :caption: How-to Guides
 
-```
-Build <build>
-Simulate <simulate>
-Deploy <deploy>
-```
+    Build <build>
+    Simulate <simulate>
+    Deploy <deploy>
 
-<<<<<<< ours
 Explanations
 ============
-<<<<<<< ours
-=======
-# Explanations
->>>>>>> theirs
-=======
->>>>>>> theirs
 
 Understanding-oriented concept guides explain and discuss key topics and underlying
 ideas behind Flower and collaborative AI.
 
 .. toctree::
-:maxdepth: 1
-:caption: Explanations
+    :maxdepth: 1
+    :caption: Explanations
 
-```
-explanation-federated-evaluation
-explanation-differential-privacy
-explanation-flower-architecture
-```
+    explanation-federated-evaluation
+    explanation-differential-privacy
+    explanation-flower-architecture
 
-<<<<<<< ours
 References
 ==========
-<<<<<<< ours
-=======
-# References
->>>>>>> theirs
-=======
->>>>>>> theirs
 
 .. toctree::
-:titlesonly:
-:maxdepth: 2
-:caption: References
+    :titlesonly:
+    :maxdepth: 2
+    :caption: References
 
-```
-reference
-```
+    reference
 
-<<<<<<< ours
 Contribute
 ==========
-<<<<<<< ours
-=======
-# Contribute
->>>>>>> theirs
-=======
->>>>>>> theirs
 
 The Flower community welcomes contributions. The following docs are intended to help
 along the way.
 
 .. toctree::
-:titlesonly:
-:caption: Contributor docs
+    :titlesonly:
+    :caption: Contributor docs
 
-```
-Contribute <contribute>
-```
+    Contribute <contribute>
 
 .. Indices and tables
 

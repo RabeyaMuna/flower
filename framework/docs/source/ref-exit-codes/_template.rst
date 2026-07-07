@@ -1,20 +1,3 @@
-<<<<<<< ours
-###################
- \[<CODE>\] <NAME>
-###################
-
-----
-
-Description
-
-----
-
-<DESCRIPTION>
-
-----
-
-How to Resolve
-=======
 #################
  [<CODE>] <NAME>
 #################
@@ -28,8 +11,5 @@ How to Resolve
 ****************
  How to Resolve
 ****************
->>>>>>> theirs
 
-----
-
-\<RESOLUTION_STEPS>
+<RESOLUTION_STEPS>
