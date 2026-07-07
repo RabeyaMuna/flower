@@ -70,7 +70,8 @@ def test_ndarray_to_array() -> None:
 
     array = ndarray_to_array(arr)
 
-    arr_: Any = np.frombuffer(buffer=array.data, dtype=array.dtype).reshape(array.shape)
+    arr_buffer: Any = np.frombuffer(buffer=array.data, dtype=array.dtype)
+    arr_ = arr_buffer.reshape(array.shape)
 
     assert np.array_equal(arr, arr_)
 

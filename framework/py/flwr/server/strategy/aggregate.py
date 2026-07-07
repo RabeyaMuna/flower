@@ -245,7 +245,10 @@ def _compute_distances(weights: list[NDArrays]) -> NDArray:
     Input: weights - list of weights vectors
     Output: distances - matrix distance_matrix of squared distances between the vectors
     """
-    flat_w = [np.ravel(np.concatenate(p)) for p in weights]
+    flat_w: list[Any] = []
+    for parameters in weights:
+        concatenated: Any = np.concatenate(parameters)
+        flat_w.append(np.ravel(concatenated))
     distance_matrix: Any = np.zeros((len(weights), len(weights)))
     for i, flat_w_i in enumerate(flat_w):
         for j, flat_w_j in enumerate(flat_w):
