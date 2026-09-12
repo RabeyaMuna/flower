@@ -14,7 +14,6 @@
 # ==============================================================================
 """Flower ServerApp process."""
 
-
 import argparse
 import gc
 from logging import DEBUG, ERROR, INFO
@@ -116,8 +115,8 @@ def run_serverapp(  # pylint: disable=R0914, disable=W0212, disable=R0915
     run_status = None
     heartbeat_sender = None
     grid = None
+    context: Optional[Context] = None
     while True:
-
         try:
             # Initialize the GrpcGrid
             grid = GrpcGrid(
