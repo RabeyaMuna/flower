@@ -14,7 +14,6 @@
 # ==============================================================================
 """Tests for in-memory grid."""
 
-
 import time
 import unittest
 from collections.abc import Iterable
@@ -83,6 +82,7 @@ class TestInMemoryGrid(unittest.TestCase):
         ]
         self.state.get_run.return_value = Run(
             run_id=61016,
+            flwr_aid="mock",
             fab_id="mock/mock",
             fab_version="v1.0.0",
             fab_hash="9f86d08",
@@ -238,7 +238,6 @@ def create_message_replies_for_specific_ids(message_ids: list[str]) -> list[Mess
     message_replies = []
 
     for msg_id in message_ids:
-
         message = message_from_proto(
             create_ins_message(
                 src_node_id=SUPERLINK_NODE_ID, dst_node_id=123, run_id=456
