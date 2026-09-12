@@ -14,7 +14,6 @@
 # ==============================================================================
 """Flower ClientApp process."""
 
-
 import gc
 import os
 import threading
@@ -32,7 +31,7 @@ from flwr.common import Context, Message
 from flwr.common.config import get_flwr_dir
 from flwr.common.constant import ErrorCode
 from flwr.common.grpc import create_channel, on_channel_state_change
-from flwr.common.logger import log, mask_string
+from flwr.common.logger import log
 from flwr.common.retry_invoker import _make_simple_grpc_retry_invoker, _wrap_stub
 from flwr.common.serde import (
     context_from_proto,
@@ -43,6 +42,23 @@ from flwr.common.serde import (
     run_from_proto,
 )
 from flwr.common.typing import Fab, Run
+
+
+def mask_string(s: Optional[str]) -> str:
+    """Return a masked version of the provided string for logging.
+
+    Preserves first 2 and last 2 characters when length > 4, otherwise masks
+    all characters. Returns empty string for None.
+    """
+    if s is None:
+        return ""
+    s = str(s)
+    n = len(s)
+    if n <= 4:
+        return "*" * n
+    # Keep first 2 and last 2 characters
+    return s[:2] + "*" * (n - 4) + s[-2:]
+
 
 # pylint: disable=E0611
 from flwr.proto.clientappio_pb2 import (

@@ -14,14 +14,13 @@
 # ==============================================================================
 """`flwr-clientapp` command."""
 
-
 import argparse
 from logging import DEBUG, INFO
 
 from flwr.common.args import add_args_flwr_app_common
 from flwr.common.constant import CLIENTAPPIO_API_DEFAULT_CLIENT_ADDRESS
 from flwr.common.exit import ExitCode, flwr_exit
-from flwr.common.logger import log, mask_string
+from flwr.common.logger import log
 from flwr.supernode.runtime.run_clientapp import run_clientapp
 
 
@@ -35,12 +34,16 @@ def flwr_clientapp() -> None:
         )
 
     log(INFO, "Start `flwr-clientapp` process")
+    token_display = "None"
+    if args.token:
+        t = args.token
+        token_display = (t[:4] + "..." + t[-4:]) if len(t) > 8 else t
     log(
         DEBUG,
         "`flwr-clientapp` will attempt to connect to SuperNode's "
         "ClientAppIo API at %s with token %s",
         args.clientappio_api_address,
-        mask_string(args.token) if args.token else "None",
+        token_display,
     )
     run_clientapp(
         clientappio_api_address=args.clientappio_api_address,
