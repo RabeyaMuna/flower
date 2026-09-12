@@ -14,7 +14,6 @@
 # ==============================================================================
 """Flower server app."""
 
-
 import argparse
 import csv
 import importlib.util
@@ -73,7 +72,15 @@ from flwr.server.serverapp.app import flwr_serverapp
 from flwr.simulation.app import flwr_simulation
 from flwr.supercore.ffs import FfsFactory
 from flwr.supercore.object_store import ObjectStoreFactory
-from flwr.superexec import load_executor
+
+# Import load_executor from flwr.superexec. Use a mypy ignore for the static import
+# and provide a runtime fallback in case the attribute is not exposed at import time.
+try:
+    from flwr.superexec import load_executor  # type: ignore
+except Exception:  # pragma: no cover - fallback dynamic import
+    module = __import__("flwr.superexec", fromlist=["*"])
+    load_executor = getattr(module, "load_executor", None)
+
 from flwr.superlink.servicer.exec import run_exec_api_grpc
 
 from .superlink.fleet.grpc_adapter.grpc_adapter_servicer import GrpcAdapterServicer
@@ -97,7 +104,6 @@ try:
         get_fleet_event_log_writer_plugins,
     )
 except ImportError:
-
     # pylint: disable-next=unused-argument
     def add_ee_args_superlink(parser: argparse.ArgumentParser) -> None:
         """Add EE-specific arguments to the parser."""
@@ -307,7 +313,6 @@ def run_superlink() -> None:
             raise ValueError(f"Unknown fleet_api_type: {args.fleet_api_type}")
 
     if args.isolation == ISOLATION_MODE_SUBPROCESS:
-
         _octet, _colon, _port = serverappio_address.rpartition(":")
         io_address = (
             f"{CLIENT_OCTET}:{_port}" if _octet == SERVER_OCTET else serverappio_address
@@ -387,7 +392,6 @@ def _flwr_scheduler(
         pending_run_id = state.get_pending_run_id()
 
         if pending_run_id and pending_run_id not in run_id_to_proc:
-
             log(
                 INFO,
                 "Launching %s subprocess. Connects to SuperLink on %s",
