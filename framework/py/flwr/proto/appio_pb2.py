@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 from flwr.proto import message_pb2 as flwr_dot_proto_dot_message__pb2
-from flwr.proto import fab_pb2 as flwr_dot_proto_dot_fab__pb2
+from flwr.proto import fab_pb2 as flwr_dot_proto_dot_fab__pb2  # noqa: F401
 from flwr.proto import run_pb2 as flwr_dot_proto_dot_run__pb2
 
 

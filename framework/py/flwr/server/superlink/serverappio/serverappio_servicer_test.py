@@ -14,7 +14,6 @@
 # ==============================================================================
 """ServerAppIoServicer tests."""
 
-
 import tempfile
 import unittest
 from typing import Optional
@@ -30,13 +29,11 @@ from flwr.common.constant import (
     Status,
 )
 from flwr.common.inflatable import (
-    get_all_nested_objects,
-    get_object_id,
     get_object_tree,
     iterate_object_tree,
 )
 from flwr.common.message import get_message_to_descendant_id_mapping
-from flwr.common.serde import context_to_proto, message_from_proto, run_status_to_proto
+from flwr.common.serde import context_to_proto, message_from_proto
 from flwr.common.serde_test import RecordMaker
 from flwr.common.typing import RunStatus
 from flwr.proto.appio_pb2 import (  # pylint: disable=E0611
@@ -57,13 +54,11 @@ from flwr.proto.message_pb2 import (  # pylint: disable=E0611
 )
 from flwr.proto.message_pb2 import Message as ProtoMessage  # pylint: disable=E0611
 from flwr.proto.message_pb2 import (  # pylint: disable=E0611
-    ObjectTree,
     PullObjectRequest,
     PullObjectResponse,
     PushObjectRequest,
     PushObjectResponse,
 )
-from flwr.proto.node_pb2 import Node  # pylint: disable=E0611
 from flwr.proto.run_pb2 import (  # pylint: disable=E0611
     UpdateRunStatusRequest,
     UpdateRunStatusResponse,
@@ -508,7 +503,6 @@ class TestServerAppIoServicer(unittest.TestCase):  # pylint: disable=R0902, R090
             + message_ins.metadata.ttl
             + 0.1,
         ):  # over TTL limit
-
             request = PullAppMessagesRequest(message_ids=[str(msg_id)], run_id=run_id)
 
             # Execute
