@@ -14,7 +14,6 @@
 # ==============================================================================
 """Test the ClientAppIo API servicer."""
 
-
 import unittest
 from unittest.mock import Mock
 
@@ -62,9 +61,16 @@ class TestClientAppIoServicer(unittest.TestCase):
             run=ProtoRun(run_id=61016, fab_id="mock/mock", fab_version="v1.0.0"),
             fab=fab_to_proto(mock_fab),
         )
-        self.mock_stub.PullMessage.return_value = PullAppMessagesResponse(
-            messages_list=[message_to_proto(mock_message)]
-        )
+        # Build a PullAppMessagesResponse that includes a message_object_tree
+        # so that production code can safely index message_object_trees[0].
+        pull_msg_response = PullAppMessagesResponse()
+        # Keep messages_list for completeness
+        pull_msg_response.messages_list.extend([message_to_proto(mock_message)])
+        # Add a MessageObjectTree and include the message so indexing and downstream
+        # processing have at least one message available.
+        tree = pull_msg_response.message_object_trees.add()
+        tree.messages.extend([message_to_proto(mock_message)])
+        self.mock_stub.PullMessage.return_value = pull_msg_response
         self.mock_stub.PullClientAppInputs.return_value = mock_response
 
         # Execute

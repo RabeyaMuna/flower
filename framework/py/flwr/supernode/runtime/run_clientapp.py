@@ -14,7 +14,6 @@
 # ==============================================================================
 """Flower ClientApp process."""
 
-
 import gc
 import os
 import threading
@@ -223,6 +222,17 @@ def pull_clientappinputs(
         )
         run_id = context.run_id
         node = Node(node_id=context.node_id)
+
+        # Ensure there is at least one message object tree before indexing
+        if not getattr(pull_msg_res, "message_object_trees", None):
+            log(
+                ERROR,
+                "[flwr-clientapp] No message object trees received for token %s",
+                masked_token,
+            )
+            # Raise a descriptive gRPC error so callers handling grpc.RpcError can catch it
+            raise grpc.RpcError("No message object trees received for token")
+
         object_tree = pull_msg_res.message_object_trees[0]
         message = pull_and_inflate_object_from_tree(
             object_tree,
@@ -254,7 +264,6 @@ def push_clientappoutputs(
     proto_context = context_to_proto(context)
 
     try:
-
         # Push Message
         _ = stub.PushMessage(
             PushAppMessagesRequest(token=token, messages_list=[proto_message])
