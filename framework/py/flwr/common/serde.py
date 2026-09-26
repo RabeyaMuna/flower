@@ -177,7 +177,7 @@ def fit_res_from_proto(msg: ClientMessage.FitRes) -> typing.FitRes:
     """Deserialize `FitRes` from ProtoBuf."""
     status = status_from_proto(msg=msg.status)
     parameters = parameters_from_proto(msg.parameters)
-    metrics = None if msg.metrics is None else metrics_from_proto(msg.metrics)
+    metrics = metrics_from_proto(msg.metrics) if msg.metrics is not None else {}
     return typing.FitRes(
         status=status,
         parameters=parameters,
@@ -259,7 +259,7 @@ def evaluate_res_to_proto(res: typing.EvaluateRes) -> ClientMessage.EvaluateRes:
 def evaluate_res_from_proto(msg: ClientMessage.EvaluateRes) -> typing.EvaluateRes:
     """Deserialize `EvaluateRes` from ProtoBuf."""
     status = status_from_proto(msg=msg.status)
-    metrics = None if msg.metrics is None else metrics_from_proto(msg.metrics)
+    metrics = metrics_from_proto(msg.metrics) if msg.metrics is not None else {}
     return typing.EvaluateRes(
         status=status,
         loss=msg.loss,

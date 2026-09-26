@@ -26,6 +26,7 @@ from typing import Optional
 from flwr.cli.config_utils import get_fab_metadata
 from flwr.cli.install import install_from_fab
 from flwr.cli.utils import get_sha256_hash
+from flwr.common import Context
 from flwr.common.args import add_args_flwr_app_common
 from flwr.common.config import (
     get_flwr_dir,
@@ -116,6 +117,7 @@ def run_serverapp(  # pylint: disable=R0914, disable=W0212, disable=R0915
     run_status = None
     heartbeat_sender = None
     grid = None
+    context: Optional[Context] = None
     while True:
 
         try:
