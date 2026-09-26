@@ -82,6 +82,7 @@ class TestInMemoryGrid(unittest.TestCase):
             for _ in range(self.num_nodes)
         ]
         self.state.get_run.return_value = Run(
+            flwr_aid="",
             run_id=61016,
             fab_id="mock/mock",
             fab_version="v1.0.0",
