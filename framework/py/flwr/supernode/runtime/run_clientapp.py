@@ -43,6 +43,7 @@ from flwr.common.serde import (
     context_from_proto,
     context_to_proto,
     fab_from_proto,
+    message_from_proto,
     message_to_proto,
     run_from_proto,
 )
@@ -223,19 +224,23 @@ def pull_clientappinputs(
         )
         run_id = context.run_id
         node = Node(node_id=context.node_id)
-        object_tree = pull_msg_res.message_object_trees[0]
-        message = pull_and_inflate_object_from_tree(
-            object_tree,
-            make_pull_object_fn_protobuf(stub.PullObject, node, run_id),
-            make_confirm_message_received_fn_protobuf(
-                stub.ConfirmMessageReceived, node, run_id
-            ),
-            return_type=Message,
-        )
+        if pull_msg_res.message_object_trees:
+            object_tree = pull_msg_res.message_object_trees[0]
+            message = pull_and_inflate_object_from_tree(
+                object_tree,
+                make_pull_object_fn_protobuf(stub.PullObject, node, run_id),
+                make_confirm_message_received_fn_protobuf(
+                    stub.ConfirmMessageReceived, node, run_id
+                ),
+                return_type=Message,
+            )
 
-        # Set the message ID
-        # The deflated message doesn't contain the message_id (its own object_id)
-        message.metadata.__dict__["_message_id"] = object_tree.object_id
+            # Set the message ID
+            # The deflated message doesn't contain the message_id (its own object_id)
+            message.metadata.__dict__["_message_id"] = object_tree.object_id
+        else:
+            # Fall back to direct message from messages_list
+            message = message_from_proto(pull_msg_res.messages_list[0])
         return message, context, run, fab
     except grpc.RpcError as e:
         log(ERROR, "[PullClientAppInputs] gRPC error occurred: %s", str(e))
