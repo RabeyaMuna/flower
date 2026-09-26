@@ -425,3 +425,23 @@ def print_json_error(msg: str, e: Union[typer.Exit, Exception]) -> None:
             }
         )
     )
+
+
+def mask_string(s: str, visible_chars: int = 4) -> str:
+    """Mask a string, showing only the last N visible characters.
+
+    Parameters
+    ----------
+    s : str
+        The string to mask.
+    visible_chars : int
+        The number of characters to show at the end.
+
+    Returns
+    -------
+    str
+        The masked string.
+    """
+    if len(s) <= visible_chars:
+        return "*" * len(s)
+    return "*" * (len(s) - visible_chars) + s[-visible_chars:]
