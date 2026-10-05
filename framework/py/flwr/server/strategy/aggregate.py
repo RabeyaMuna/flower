@@ -123,12 +123,12 @@ def aggregate_krum(
 
     if to_keep > 0:
         # Choose to_keep clients and return their average (MultiKrum)
-        best_indices = np.argsort(scores)[::-1][len(scores) - to_keep :]  # noqa: E203
-        best_results = [results[i] for i in best_indices]
+        best_indices = np.argsort(scores)[::-1][len(scores) - to_keep :].tolist()  # noqa: E203
+        best_results = [results[int(i)] for i in best_indices]
         return aggregate(best_results)
 
     # Return the model parameters that minimize the score (Krum)
-    return weights[np.argmin(scores)]
+    return weights[int(np.argmin(scores))]
 
 
 # pylint: disable=too-many-locals
