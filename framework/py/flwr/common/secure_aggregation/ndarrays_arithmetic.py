@@ -15,7 +15,7 @@
 """Utility functions for performing operations on Numpy NDArrays."""
 
 
-from typing import Any, Union
+from typing import Any, Union, cast
 
 import numpy as np
 from numpy.typing import DTypeLike, NDArray
@@ -23,7 +23,7 @@ from numpy.typing import DTypeLike, NDArray
 
 def factor_combine(factor: int, parameters: list[NDArray[Any]]) -> list[NDArray[Any]]:
     """Combine factor with parameters."""
-    return [np.array([factor])] + parameters
+    return [cast(NDArray[Any], np.array([factor]))] + parameters
 
 
 def factor_extract(
