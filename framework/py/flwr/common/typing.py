@@ -20,11 +20,9 @@ from enum import Enum
 from typing import Any, Callable, Optional, Union
 
 import numpy as np
-import numpy.typing as npt
-
-NDArray = npt.NDArray[Any]
-NDArrayInt = npt.NDArray[np.int_]
-NDArrayFloat = npt.NDArray[np.float64]
+NDArray = np.ndarray
+NDArrayInt = np.ndarray
+NDArrayFloat = np.ndarray
 NDArrays = list[NDArray]
 
 # The following union type contains Python types corresponding to ProtoBuf types that
@@ -230,7 +228,7 @@ class Run:  # pylint: disable=too-many-instance-attributes
     running_at: str
     finished_at: str
     status: RunStatus
-    flwr_aid: str
+    flwr_aid: str = ""
 
     @classmethod
     def create_empty(cls, run_id: int) -> "Run":
