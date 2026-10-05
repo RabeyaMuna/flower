@@ -45,6 +45,14 @@ FLOWER_LOGGER = logging.getLogger(LOGGER_NAME)
 FLOWER_LOGGER.setLevel(logging.DEBUG)
 log = FLOWER_LOGGER.log  # pylint: disable=invalid-name
 
+
+def mask_string(value: str, visible: int = 4) -> str:
+    """Mask a sensitive string while keeping a few trailing characters visible."""
+    if len(value) <= visible:
+        return "*" * len(value)
+    return "*" * (len(value) - visible) + value[-visible:]
+
+
 LOG_COLORS = {
     "DEBUG": "\033[94m",  # Blue
     "INFO": "\033[92m",  # Green
