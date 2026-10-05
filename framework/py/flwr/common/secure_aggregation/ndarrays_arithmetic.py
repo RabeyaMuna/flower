@@ -18,22 +18,22 @@
 from typing import Any, Union
 
 import numpy as np
-from numpy.typing import DTypeLike, NDArray
+from numpy.typing import DTypeLike
 
 
-def factor_combine(factor: int, parameters: list[NDArray[Any]]) -> list[NDArray[Any]]:
+def factor_combine(factor: int, parameters: list[np.ndarray]) -> list[np.ndarray]:
     """Combine factor with parameters."""
     return [np.array([factor])] + parameters
 
 
 def factor_extract(
-    parameters: list[NDArray[Any]],
-) -> tuple[int, list[NDArray[Any]]]:
+    parameters: list[np.ndarray],
+) -> tuple[int, list[np.ndarray]]:
     """Extract factor from parameters."""
     return parameters[0][0], parameters[1:]
 
 
-def get_parameters_shape(parameters: list[NDArray[Any]]) -> list[tuple[int, ...]]:
+def get_parameters_shape(parameters: list[np.ndarray]) -> list[tuple[int, ...]]:
     """Get dimensions of each NDArray in parameters."""
     return [arr.shape for arr in parameters]
 

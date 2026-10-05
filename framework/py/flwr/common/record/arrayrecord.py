@@ -29,7 +29,6 @@ import numpy as np
 from ..constant import GC_THRESHOLD
 from ..inflatable import InflatableObject, add_header_to_object_body, get_object_body
 from ..logger import log
-from ..typing import NDArray
 from .array import Array
 from .typeddict import TypedDict
 
@@ -150,7 +149,7 @@ class ArrayRecord(TypedDict[str, Array], InflatableObject):
     def __init__(  # pylint: disable=too-many-arguments
         self,
         *args: Any,
-        numpy_ndarrays: list[NDArray] | None = None,
+        numpy_ndarrays: list[np.ndarray] | None = None,
         torch_state_dict: OrderedDict[str, torch.Tensor] | None = None,
         array_dict: OrderedDict[str, Array] | None = None,
         keep_input: bool = True,
@@ -160,7 +159,7 @@ class ArrayRecord(TypedDict[str, Array], InflatableObject):
         # Determine the initialization method and validates input arguments.
         # Support the following initialization formats:
         # 1. cls(array_dict: OrderedDict[str, Array], keep_input: bool)
-        # 2. cls(numpy_ndarrays: list[NDArray], keep_input: bool)
+        # 2. cls(numpy_ndarrays: list[np.ndarray], keep_input: bool)
         # 3. cls(torch_state_dict: dict[str, torch.Tensor], keep_input: bool)
 
         # Init the argument
@@ -214,7 +213,7 @@ class ArrayRecord(TypedDict[str, Array], InflatableObject):
             # Type check the input
             # pylint: disable-next=not-an-iterable
             if isinstance(arg, list) and all(isinstance(v, np.ndarray) for v in arg):
-                numpy_ndarrays = cast(list[NDArray], arg)
+                numpy_ndarrays = cast(list[np.ndarray], arg)
                 converted = self.from_numpy_ndarrays(
                     numpy_ndarrays, keep_input=keep_input
                 )
@@ -261,7 +260,7 @@ class ArrayRecord(TypedDict[str, Array], InflatableObject):
     @classmethod
     def from_numpy_ndarrays(
         cls,
-        ndarrays: list[NDArray],
+        ndarrays: list[np.ndarray],
         *,
         keep_input: bool = True,
     ) -> ArrayRecord:
@@ -309,13 +308,13 @@ class ArrayRecord(TypedDict[str, Array], InflatableObject):
 
         return record
 
-    def to_numpy_ndarrays(self, *, keep_input: bool = True) -> list[NDArray]:
+    def to_numpy_ndarrays(self, *, keep_input: bool = True) -> list[np.ndarray]:
         """Return the ArrayRecord as a list of NumPy ``ndarray``."""
         if keep_input:
             return [v.numpy() for v in self.values()]
 
         # Clear the record and return the list of NumPy arrays
-        ret: list[NDArray] = []
+        ret: list[np.ndarray] = []
         total_serialized_bytes = 0
         for k in list(self.keys()):
             arr = self.pop(k)

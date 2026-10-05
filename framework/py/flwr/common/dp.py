@@ -18,6 +18,8 @@
 import numpy as np
 
 from flwr.common.logger import warn_deprecated_feature
+from typing import Sequence
+
 from flwr.common.typing import NDArrays
 
 
@@ -30,7 +32,7 @@ def _get_update_norm(update: NDArrays) -> float:
     return float(np.sqrt(np.sum(np.square(flattened_update))))
 
 
-def add_gaussian_noise(update: NDArrays, std_dev: float) -> NDArrays:
+def add_gaussian_noise(update: Sequence[np.ndarray], std_dev: float) -> NDArrays:
     """Add iid Gaussian noise to each floating point value in the update."""
     warn_deprecated_feature("`add_gaussian_noise` method")
     update_noised = [
@@ -39,7 +41,7 @@ def add_gaussian_noise(update: NDArrays, std_dev: float) -> NDArrays:
     return update_noised
 
 
-def clip_by_l2(update: NDArrays, threshold: float) -> tuple[NDArrays, bool]:
+def clip_by_l2(update: Sequence[np.ndarray], threshold: float) -> tuple[NDArrays, bool]:
     """Scales the update so thats its L2 norm is upper-bound to threshold."""
     warn_deprecated_feature("`clip_by_l2` method")
     update_norm = _get_update_norm(update)
