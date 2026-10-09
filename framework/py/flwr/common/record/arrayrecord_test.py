@@ -14,7 +14,6 @@
 # ==============================================================================
 """Unit tests for ArrayRecord."""
 
-
 import sys
 import unittest
 from collections import OrderedDict
@@ -191,7 +190,7 @@ class TestArrayRecord(unittest.TestCase):
         """Test initializing with no arguments."""
         _ = ArrayRecord()
 
-    @parameterized.expand(  # type: ignore
+    @parameterized.expand(
         [
             ([np.array([1, 2, 3])], True),
             ([np.array([1, 2, 3])], False),
@@ -231,7 +230,7 @@ class TestArrayRecord(unittest.TestCase):
         self.assertEqual(record["x"], arr)
         self.assertEqual(len(arr_dict), 0)
 
-    @parameterized.expand(  # type: ignore
+    @parameterized.expand(
         [
             ("array_dict", OrderedDict({"x": Array("mock", [1], "np", b"data")})),
             (None, OrderedDict({"x": Array("mock", [1], "np", b"data")})),
@@ -302,7 +301,7 @@ class TestArrayRecord(unittest.TestCase):
             # The method should be called exactly once with the provided dict
             mock_from_state_dict.assert_called_once_with(state_dict, keep_input=True)
 
-    @parameterized.expand(  # type: ignore
+    @parameterized.expand(
         [
             ((42,), {}),
             (("invalid",), {}),
