@@ -14,11 +14,11 @@
 # ==============================================================================
 """Utility functions for performing operations on Numpy NDArrays."""
 
-
 from typing import Any, Union
 
 import numpy as np
-from numpy.typing import DTypeLike, NDArray
+from numpy.typing import DTypeLike
+from numpy import ndarray as NDArray
 
 
 def factor_combine(factor: int, parameters: list[NDArray[Any]]) -> list[NDArray[Any]]:

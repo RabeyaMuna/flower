@@ -14,7 +14,6 @@
 # ==============================================================================
 """Unit tests for Array."""
 
-
 import sys
 import unittest
 from io import BytesIO
@@ -195,11 +194,10 @@ class TestArray(unittest.TestCase):
 
         # Assert
         # Inflate passing children raises ValueError
-        self.assertRaises(
-            ValueError,
-            Array.inflate,
-            arr_b,
-            children=[
-                arr,
-            ],
-        )
+        with self.assertRaises(ValueError):
+            Array.inflate(
+                arr_b,
+                children=[
+                    arr,
+                ],
+            )
