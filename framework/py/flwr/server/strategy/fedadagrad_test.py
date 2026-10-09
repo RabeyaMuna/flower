@@ -14,7 +14,6 @@
 # ==============================================================================
 """FedAdagrad tests."""
 
-
 from unittest.mock import MagicMock
 
 from numpy import array, float32
@@ -79,7 +78,7 @@ def test_aggregate_fit() -> None:
     actual_aggregated, _ = strategy.aggregate_fit(
         server_round=1, results=results, failures=[]
     )
-    assert actual_aggregated
+    assert actual_aggregated is not None
     actual_list = parameters_to_ndarrays(actual_aggregated)
     actual = actual_list[0]
     assert (actual == expected[0]).all()

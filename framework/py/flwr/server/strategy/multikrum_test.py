@@ -14,7 +14,6 @@
 # ==============================================================================
 """Krum tests."""
 
-
 from unittest.mock import MagicMock
 
 from numpy import array, float32
@@ -31,14 +30,12 @@ from flwr.common import (
 from flwr.server.client_proxy import ClientProxy
 from flwr.server.superlink.fleet.grpc_bidi.grpc_client_proxy import GrpcClientProxy
 
-from .krum import Krum
-
 
 def test_aggregate_fit() -> None:
     """Tests if MultiKrum is aggregating correctly."""
     # Prepare
     previous_weights: NDArrays = [array([0.1, 0.1, 0.1, 0.1], dtype=float32)]
-    strategy = Krum(
+    strategy = MultiKrum(
         initial_parameters=ndarrays_to_parameters(previous_weights),
         num_malicious_clients=1,
         num_clients_to_keep=2,

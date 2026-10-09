@@ -14,7 +14,6 @@
 # ==============================================================================
 """Unit tests for ArrayRecord."""
 
-
 import json
 import sys
 import unittest
@@ -70,7 +69,7 @@ class TestArrayRecord(unittest.TestCase):
         if self._original_torch is not None:
             sys.modules["torch"] = self._original_torch
 
-    @parameterized.expand(  # type: ignore
+    @parameterized.expand(
         [
             ([np.array([1, 2]), np.array([3, 4])],),  # Two arrays
             ([np.array(5)],),  # Single array
@@ -193,7 +192,7 @@ class TestArrayRecord(unittest.TestCase):
         """Test initializing with no arguments."""
         _ = ArrayRecord()
 
-    @parameterized.expand(  # type: ignore
+    @parameterized.expand(
         [
             ([np.array([1, 2, 3])], True),
             ([np.array([1, 2, 3])], False),
@@ -216,7 +215,7 @@ class TestArrayRecord(unittest.TestCase):
                 _ = ArrayRecord(ndarrays)
             mock_from_numpy.assert_called_once_with(ndarrays, keep_input=True)
 
-    @parameterized.expand([(True,), (False,)])  # type: ignore
+    @parameterized.expand([(True,), (False,)])
     def test_init_array_dict_keep_input_false(self, use_keyword: bool) -> None:
         """Test initializing with an array_dict and keep_input=False."""
         # Prepare
@@ -233,7 +232,7 @@ class TestArrayRecord(unittest.TestCase):
         self.assertEqual(record["x"], arr)
         self.assertEqual(len(arr_dict), 0)
 
-    @parameterized.expand(  # type: ignore
+    @parameterized.expand(
         [
             ("array_dict", OrderedDict({"x": Array("mock", [1], "np", b"data")})),
             (None, OrderedDict({"x": Array("mock", [1], "np", b"data")})),
@@ -268,7 +267,7 @@ class TestArrayRecord(unittest.TestCase):
         self.assertEqual(input_size_after1, input_size_original)
         self.assertEqual(input_size_after2, 0)
 
-    @parameterized.expand([(True,), (False,)])  # type: ignore
+    @parameterized.expand([(True,), (False,)])
     def test_init_array_dict_keep_input_true(self, use_keyword: bool) -> None:
         """Test initializing with an array_dict and keep_input=True."""
         # Prepare
@@ -285,7 +284,7 @@ class TestArrayRecord(unittest.TestCase):
         self.assertEqual(record["x"], arr_dict["x"])
         self.assertEqual(len(arr_dict), 1)
 
-    @parameterized.expand([(True,), (False,)])  # type: ignore
+    @parameterized.expand([(True,), (False,)])
     def test_init_state_dict_calls_from_torch_state_dict(
         self, use_keyword: bool
     ) -> None:
@@ -304,7 +303,7 @@ class TestArrayRecord(unittest.TestCase):
             # The method should be called exactly once with the provided dict
             mock_from_state_dict.assert_called_once_with(state_dict, keep_input=True)
 
-    @parameterized.expand(  # type: ignore
+    @parameterized.expand(
         [
             ((42,), {}),
             (("invalid",), {}),
@@ -330,7 +329,7 @@ class TestArrayRecord(unittest.TestCase):
         with self.assertRaisesRegex(TypeError, "Invalid arguments for ArrayRecord.*"):
             ArrayRecord(*args, **kwargs)
 
-    @parameterized.expand(  # type: ignore
+    @parameterized.expand(
         [
             ([np.array([1, 2]), np.array([3, 4])],),  # Two arrays
             ([np.array(5)],),  # Single array
@@ -392,7 +391,7 @@ class TestArrayRecord(unittest.TestCase):
             ArrayRecord.inflate(arr_rec_b)
         # Inflate but passing wrong Children type
         with pytest.raises(ValueError):
-            ArrayRecord.inflate(arr_rec_b, children={"123": np.array(5)})  # type: ignore
+            ArrayRecord.inflate(arr_rec_b, children={"123": np.array(5)})
         # Inflate but passing children with wrong Object ID
         with pytest.raises(ValueError):
             ArrayRecord.inflate(arr_rec_b, children={"123": Array(arr)})

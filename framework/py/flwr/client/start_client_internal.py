@@ -14,7 +14,6 @@
 # ==============================================================================
 """Flower client app."""
 
-
 import multiprocessing
 import os
 import sys
@@ -110,6 +109,7 @@ def start_client_internal(
     isolation: Optional[str] = None,
     clientappio_api_address: Optional[str] = CLIENTAPPIO_API_DEFAULT_SERVER_ADDRESS,
 ) -> None:
+    """Start a Flower client node which connects to a Flower server."""
     """Start a Flower client node which connects to a Flower server.
 
     Parameters
@@ -441,7 +441,6 @@ def start_client_internal(
                             # Execute ClientApp
                             reply_message = client_app(message=message, context=context)
                     except Exception as ex:  # pylint: disable=broad-exception-caught
-
                         # Legacy grpc-bidi
                         if transport in ["grpc-bidi", None]:
                             log(ERROR, "Client raised an exception.", exc_info=ex)
@@ -508,7 +507,9 @@ def start_client_internal(
         time.sleep(sleep_duration)
 
 
-def _init_connection(transport: Optional[str], server_address: str) -> tuple[
+def _init_connection(
+    transport: Optional[str], server_address: str
+) -> tuple[
     Callable[
         [
             str,

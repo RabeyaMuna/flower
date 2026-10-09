@@ -19,7 +19,6 @@ Adaptive Federated Optimization using Adagrad.
 Paper: arxiv.org/abs/2003.00295
 """
 
-
 from typing import Callable, Optional, Union
 
 import numpy as np
@@ -149,7 +148,7 @@ class FedAdagrad(FedOpt):
         ]
 
         # m_t
-        if not self.m_t:
+        if not hasattr(self, "m_t") or not self.m_t:
             self.m_t = [np.zeros_like(x) for x in delta_t]
         self.m_t = [
             np.multiply(self.beta_1, x) + (1 - self.beta_1) * y
@@ -157,7 +156,7 @@ class FedAdagrad(FedOpt):
         ]
 
         # v_t
-        if not self.v_t:
+        if not hasattr(self, "v_t") or not self.v_t:
             self.v_t = [np.zeros_like(x) for x in delta_t]
         self.v_t = [x + np.multiply(y, y) for x, y in zip(self.v_t, delta_t)]
 
