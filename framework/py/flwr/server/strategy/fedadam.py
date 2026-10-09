@@ -19,7 +19,6 @@
 Paper: arxiv.org/abs/2003.00295
 """
 
-
 from typing import Callable, Optional, Union
 
 import numpy as np
@@ -176,12 +175,12 @@ class FedAdam(FedOpt):
         # Optimization" in the formula line right before Section 2.1.
         eta_norm = (
             self.eta
-            * np.sqrt(1 - np.power(self.beta_2, server_round + 1.0))
-            / (1 - np.power(self.beta_1, server_round + 1.0))
+            * np.sqrt(float(1 - np.power(self.beta_2, server_round + 1.0)))
+            / float(1 - np.power(self.beta_1, server_round + 1.0))
         )
 
         new_weights = [
-            x + eta_norm * y / (np.sqrt(z) + self.tau)
+            x + eta_norm * y / (np.sqrt(z.astype(float)) + self.tau)
             for x, y, z in zip(self.current_weights, self.m_t, self.v_t)
         ]
 

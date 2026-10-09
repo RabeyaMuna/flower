@@ -365,8 +365,10 @@ def _aggregate_n_closest_weights(
         for other_w in list_of_weights:
             other_weights_layer = other_w[layer_id]
             other_weights_layer_list.append(other_weights_layer)
-        other_weights_layer_np = np.array(other_weights_layer_list)
-        diff_np = np.abs(layer_weights - other_weights_layer_np)
+        other_weights_layer_np = np.array(other_weights_layer_list, dtype=np.float32)
+        diff_np = np.abs(
+            np.array(layer_weights, dtype=np.float32) - other_weights_layer_np
+        )
         # Create indices of the smallest differences
         # We do not need the exact order but just the beta closest weights
         # therefore np.argpartition is used instead of np.argsort
@@ -376,5 +378,7 @@ def _aggregate_n_closest_weights(
         beta_closest_weights = np.take_along_axis(
             other_weights_layer_np, indices=indices, axis=0
         )[:beta_closest]
-        aggregated_weights.append(np.mean(beta_closest_weights, axis=0))
+        aggregated_weights.append(
+            np.mean(beta_closest_weights, axis=0, dtype=np.float32)
+        )
     return aggregated_weights
