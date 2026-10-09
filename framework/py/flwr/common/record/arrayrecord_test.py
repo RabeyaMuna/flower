@@ -14,7 +14,6 @@
 # ==============================================================================
 """Unit tests for ArrayRecord."""
 
-
 import sys
 import unittest
 from collections import OrderedDict
@@ -191,7 +190,7 @@ class TestArrayRecord(unittest.TestCase):
         """Test initializing with no arguments."""
         _ = ArrayRecord()
 
-    @parameterized.expand(  # type: ignore
+    @parameterized.expand(
         [
             ([np.array([1, 2, 3])], True),
             ([np.array([1, 2, 3])], False),
@@ -214,7 +213,7 @@ class TestArrayRecord(unittest.TestCase):
                 _ = ArrayRecord(ndarrays)
             mock_from_numpy.assert_called_once_with(ndarrays, keep_input=True)
 
-    @parameterized.expand([(True,), (False,)])  # type: ignore
+    @parameterized.expand([(True,), (False,)])
     def test_init_array_dict_keep_input_false(self, use_keyword: bool) -> None:
         """Test initializing with an array_dict and keep_input=False."""
         # Prepare
@@ -231,7 +230,7 @@ class TestArrayRecord(unittest.TestCase):
         self.assertEqual(record["x"], arr)
         self.assertEqual(len(arr_dict), 0)
 
-    @parameterized.expand(  # type: ignore
+    @parameterized.expand(
         [
             ("array_dict", OrderedDict({"x": Array("mock", [1], "np", b"data")})),
             (None, OrderedDict({"x": Array("mock", [1], "np", b"data")})),
@@ -266,7 +265,7 @@ class TestArrayRecord(unittest.TestCase):
         self.assertEqual(input_size_after1, input_size_original)
         self.assertEqual(input_size_after2, 0)
 
-    @parameterized.expand([(True,), (False,)])  # type: ignore
+    @parameterized.expand([(True,), (False,)])
     def test_init_array_dict_keep_input_true(self, use_keyword: bool) -> None:
         """Test initializing with an array_dict and keep_input=True."""
         # Prepare
@@ -283,7 +282,7 @@ class TestArrayRecord(unittest.TestCase):
         self.assertEqual(record["x"], arr_dict["x"])
         self.assertEqual(len(arr_dict), 1)
 
-    @parameterized.expand([(True,), (False,)])  # type: ignore
+    @parameterized.expand([(True,), (False,)])
     def test_init_state_dict_calls_from_torch_state_dict(
         self, use_keyword: bool
     ) -> None:
@@ -302,7 +301,7 @@ class TestArrayRecord(unittest.TestCase):
             # The method should be called exactly once with the provided dict
             mock_from_state_dict.assert_called_once_with(state_dict, keep_input=True)
 
-    @parameterized.expand(  # type: ignore
+    @parameterized.expand(
         [
             ((42,), {}),
             (("invalid",), {}),
