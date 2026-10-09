@@ -14,7 +14,6 @@
 # ==============================================================================
 """RecordDict tests."""
 
-
 import pickle
 from collections import OrderedDict
 from copy import deepcopy
@@ -159,7 +158,7 @@ def test_set_parameters_with_correct_types() -> None:
 )
 def test_set_parameters_with_incorrect_types(
     key_type: type[Union[int, str]],
-    value_fn: Callable[[NDArray], Union[NDArray, list[float]]],
+    value_fn: Callable[[numpy.ndarray], Union[numpy.ndarray, list[float]]],
 ) -> None:
     """Test adding dictionary of unsupported types to ArrayRecord."""
     arr_record = ArrayRecord()
@@ -184,7 +183,7 @@ def test_set_parameters_with_incorrect_types(
 )
 def test_set_metrics_to_metricrecord_with_correct_types(
     key_type: type[str],
-    value_fn: Callable[[NDArray], MetricRecordValues],
+    value_fn: Callable[[numpy.ndarray], MetricRecordValues],
 ) -> None:
     """Test adding metrics of various types to a MetricRecord."""
     m_record = MetricRecord()
@@ -237,7 +236,9 @@ def test_set_metrics_to_metricrecord_with_correct_types(
 )
 def test_set_metrics_to_metricrecord_with_incorrect_types(
     key_type: type[Union[str, int, float, bool]],
-    value_fn: Callable[[NDArray], Union[NDArray, dict[str, NDArray], list[float]]],
+    value_fn: Callable[
+        [numpy.ndarray], Union[numpy.ndarray, dict[str, numpy.ndarray], list[float]]
+    ],
 ) -> None:
     """Test adding metrics of various unsupported types to a MetricRecord."""
     m_record = MetricRecord()
@@ -303,7 +304,7 @@ def test_set_metrics_to_metricrecord_with_and_without_keeping_input(
 )
 def test_set_configs_to_configrecord_with_correct_types(
     key_type: type[str],
-    value_fn: Callable[[NDArray], ConfigRecordValues],
+    value_fn: Callable[[numpy.ndarray], ConfigRecordValues],
 ) -> None:
     """Test adding configs of various types to a ConfigRecord."""
     labels = [1, 2.0]

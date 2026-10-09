@@ -14,7 +14,6 @@
 # ==============================================================================
 """Building block functions for DP algorithms."""
 
-
 import numpy as np
 
 from flwr.common.logger import warn_deprecated_feature

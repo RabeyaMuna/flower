@@ -19,7 +19,7 @@ from typing import Any, TypeVar, cast
 
 from google.protobuf.message import Message as GrpcMessage
 
-from flwr.proto.recorddict_pb2 import (
+from flwr.proto.record_pb2 import (
     BoolList,
     BytesList,
     DoubleList,
@@ -116,7 +116,7 @@ def record_value_dict_to_proto(
 
 
 def record_value_dict_from_proto(
-    value_dict_proto: MutableMapping[str, Any]
+    value_dict_proto: MutableMapping[str, Any],
 ) -> dict[str, Any]:
     """Deserialize the record value dict from ProtoBuf."""
     return {k: _record_value_from_proto(v) for k, v in value_dict_proto.items()}
