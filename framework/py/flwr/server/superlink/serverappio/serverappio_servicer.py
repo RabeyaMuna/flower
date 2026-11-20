@@ -44,6 +44,13 @@ from flwr.proto.log_pb2 import (  # pylint: disable=E0611
     PushLogsRequest,
     PushLogsResponse,
 )
+from flwr.proto.message_pb2 import (  # pylint: disable=E0611
+    PullObjectRequest,
+    PullObjectResponse,
+    PushObjectRequest,
+    PushObjectResponse,
+)
+
 from flwr.proto.node_pb2 import Node  # pylint: disable=E0611
 from flwr.proto.run_pb2 import (  # pylint: disable=E0611
     CreateRunRequest,
@@ -361,6 +368,32 @@ class ServerAppIoServicer(serverappio_pb2_grpc.ServerAppIoServicer):
             for run_id, run_status in run_statuses.items()
         }
         return GetRunStatusResponse(run_status_dict=run_status_dict)
+
+
+    def PushObject(
+        self, request: PushObjectRequest, context: grpc.ServicerContext
+    ) -> PushObjectResponse:
+        """Push Object to Ffs."""
+        log(DEBUG, "ServerAppIoServicer.PushObject")
+
+        ffs: Ffs = self.ffs_factory.ffs()
+        ffs.put(request.object_content, {})
+        return PushObjectResponse()
+
+    def PullObject(
+        self, request: PullObjectRequest, context: grpc.ServicerContext
+    ) -> PullObjectResponse:
+        """Pull Object from Ffs."""
+        log(DEBUG, "ServerAppIoServicer.PullObject")
+
+        ffs: Ffs = self.ffs_factory.ffs()
+        if result := ffs.get(request.object_id):
+            return PullObjectResponse(
+                object_id=request.object_id,
+                object_content=result[0],
+            )
+
+        raise ValueError(f"Found no Object with hash: {request.object_id}")
 
 
 def _raise_if(validation_error: bool, request_name: str, detail: str) -> None:
