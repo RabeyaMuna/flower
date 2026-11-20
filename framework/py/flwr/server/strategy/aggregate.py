@@ -48,7 +48,7 @@ def aggregate_inplace(results: list[tuple[ClientProxy, FitRes]]) -> NDArrays:
     num_examples_total = sum(fit_res.num_examples for (_, fit_res) in results)
 
     # Compute scaling factors for each result
-    scaling_factors = np.asarray(
+    scaling_factors: NDArray = np.asarray(
         [fit_res.num_examples / num_examples_total for _, fit_res in results]
     )
 
@@ -123,7 +123,7 @@ def aggregate_krum(
 
     if to_keep > 0:
         # Choose to_keep clients and return their average (MultiKrum)
-        best_indices = np.argsort(scores)[::-1][len(scores) - to_keep :]  # noqa: E203
+        best_indices = np.argsort(scores)[::-1][len(scores) - to_keep :]  # type: ignore[index]  # noqa: E203
         best_results = [results[i] for i in best_indices]
         return aggregate(best_results)
 
@@ -225,17 +225,17 @@ def aggregate_qffl(
     parameters: NDArrays, deltas: list[NDArrays], hs_fll: list[NDArrays]
 ) -> NDArrays:
     """Compute weighted average based on Q-FFL paper."""
-    demominator: float = np.sum(np.asarray(hs_fll))
-    scaled_deltas = []
+    denominator: float = np.sum(np.asarray(hs_fll))
+    scaled_deltas: list[NDArrays] = []
     for client_delta in deltas:
-        scaled_deltas.append([layer * 1.0 / demominator for layer in client_delta])
-    updates = []
+        scaled_deltas.append([layer * (1.0 / denominator) for layer in client_delta])
+    updates: list[NDArray] = []
     for i in range(len(deltas[0])):
-        tmp = scaled_deltas[0][i]
+        tmp: NDArray = scaled_deltas[0][i]
         for j in range(1, len(deltas)):
             tmp += scaled_deltas[j][i]
         updates.append(tmp)
-    new_parameters = [(u - v) * 1.0 for u, v in zip(parameters, updates)]
+    new_parameters: NDArrays = [(u - v) * 1.0 for u, v in zip(parameters, updates)]  # type: ignore[list-item]
     return new_parameters
 
 
@@ -245,12 +245,12 @@ def _compute_distances(weights: list[NDArrays]) -> NDArray:
     Input: weights - list of weights vectors
     Output: distances - matrix distance_matrix of squared distances between the vectors
     """
-    flat_w = np.array([np.concatenate(p, axis=None).ravel() for p in weights])
-    distance_matrix = np.zeros((len(weights), len(weights)))
+    flat_w: NDArray = np.array([np.asarray(np.concatenate(p, axis=None)).ravel() for p in weights])
+    distance_matrix: NDArray = np.zeros((len(weights), len(weights)))
     for i, flat_w_i in enumerate(flat_w):
         for j, flat_w_j in enumerate(flat_w):
-            delta = flat_w_i - flat_w_j
-            norm = np.linalg.norm(delta)
+            delta: NDArray = flat_w_i - flat_w_j
+            norm: float = float(np.linalg.norm(delta))
             distance_matrix[i, j] = norm**2
     return distance_matrix
 
