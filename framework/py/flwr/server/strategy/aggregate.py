@@ -358,10 +358,10 @@ def _aggregate_n_closest_weights(
          reference weights
     """
     list_of_weights = [weights for weights, num_examples in results]
-    aggregated_weights = []
+    aggregated_weights: NDArrays = []
 
     for layer_id, layer_weights in enumerate(reference_weights):
-        other_weights_layer_list = []
+        other_weights_layer_list: List[np.ndarray] = []
         for other_w in list_of_weights:
             other_weights_layer = other_w[layer_id]
             other_weights_layer_list.append(other_weights_layer)
