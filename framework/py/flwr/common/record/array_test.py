@@ -14,7 +14,6 @@
 # ==============================================================================
 """Unit tests for Array."""
 
-
 import sys
 import unittest
 from io import BytesIO
@@ -192,6 +191,9 @@ class TestArray(unittest.TestCase):
         # Assert
         # Both objects are identical
         assert arr.object_id == arr_.object_id
+        # Check array properties
+        assert arr_.array.dtype == arr.array.dtype
+        assert arr_.array.shape == arr.array.shape
 
         # Assert
         # Inflate passing children raises ValueError

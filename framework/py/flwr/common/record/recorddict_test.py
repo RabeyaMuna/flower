@@ -14,7 +14,6 @@
 # ==============================================================================
 """RecordDict tests."""
 
-
 import pickle
 from collections import OrderedDict
 from copy import deepcopy
@@ -179,10 +178,10 @@ def test_set_parameters_with_incorrect_types(
 @pytest.mark.parametrize(
     "key_type, value_fn",
     [
-        (str, lambda x: int(x.flatten()[0])),  # str: int
-        (str, lambda x: float(x.flatten()[0])),  # str: float
-        (str, lambda x: x.flatten().astype("int").tolist()),  # str: List[int]
-        (str, lambda x: x.flatten().astype("float").tolist()),  # str: List[float]
+        (str, lambda x: int(x.ravel()[0])),  # str: int
+        (str, lambda x: float(x.ravel()[0])),  # str: float
+        (str, lambda x: x.ravel().astype("int").tolist()),  # str: List[int]
+        (str, lambda x: x.ravel().astype("float").tolist()),  # str: List[float]
         (str, lambda x: []),  # str: empty list
     ],
 )
@@ -210,20 +209,20 @@ def test_set_metrics_to_metricrecord_with_correct_types(
 @pytest.mark.parametrize(
     "key_type, value_fn",
     [
-        (str, lambda x: str(x.flatten()[0])),  # str: str  (supported: unsupported)
-        (str, lambda x: bool(x.flatten()[0])),  # str: bool  (supported: unsupported)
+        (str, lambda x: str(x.ravel()[0])),  # str: str  (supported: unsupported)
+        (str, lambda x: bool(x.ravel()[0])),  # str: bool  (supported: unsupported)
         (
             str,
-            lambda x: x.flatten().astype("str").tolist(),
+            lambda x: x.ravel().astype("str").tolist(),
         ),  # str: List[str] (supported: unsupported)
         (str, lambda x: x),  # str: NDArray (supported: unsupported)
         (
             str,
-            lambda x: {str(v): v for v in x.flatten()},
+            lambda x: {str(v): v for v in x.ravel()},
         ),  # str: dict[str: float] (supported: unsupported)
         (
             str,
-            lambda x: [{str(v): v for v in x.flatten()}],
+            lambda x: [{str(v): v for v in x.ravel()}],
         ),  # str: List[dict[str: float]] (supported: unsupported)
         (
             str,
@@ -231,11 +230,11 @@ def test_set_metrics_to_metricrecord_with_correct_types(
         ),  # str: List[mixing valid types] (supported: unsupported)
         (
             int,
-            lambda x: x.flatten().tolist(),
+            lambda x: x.ravel().tolist(),
         ),  # int: List[str] (unsupported: supported)
         (
             float,
-            lambda x: x.flatten().tolist(),
+            lambda x: x.ravel().tolist(),
         ),  # float: List[int] (unsupported: supported)
     ],
 )
@@ -273,7 +272,7 @@ def test_set_metrics_to_metricrecord_with_and_without_keeping_input(
     arrays = get_ndarrays()
     my_metrics = cast(
         dict[str, MetricRecordValues],
-        {str(label): arr.flatten().tolist() for label, arr in zip(labels, arrays)},
+        {str(label): arr.ravel().tolist() for label, arr in zip(labels, arrays)},
     )
     my_metrics_copy = my_metrics.copy()
 
@@ -292,16 +291,16 @@ def test_set_metrics_to_metricrecord_with_and_without_keeping_input(
 @pytest.mark.parametrize(
     "key_type, value_fn",
     [
-        (str, lambda x: str(x.flatten()[0])),  # str: str
-        (str, lambda x: int(x.flatten()[0])),  # str: int
-        (str, lambda x: float(x.flatten()[0])),  # str: float
-        (str, lambda x: bool(x.flatten()[0])),  # str: bool
-        (str, lambda x: x.flatten().tobytes()),  # str: bytes
-        (str, lambda x: x.flatten().astype("str").tolist()),  # str: List[str]
-        (str, lambda x: x.flatten().astype("int").tolist()),  # str: List[int]
-        (str, lambda x: x.flatten().astype("float").tolist()),  # str: List[float]
-        (str, lambda x: x.flatten().astype("bool").tolist()),  # str: List[bool]
-        (str, lambda x: [x.flatten().tobytes()]),  # str: List[bytes]
+        (str, lambda x: str(x.ravel()[0])),  # str: str
+        (str, lambda x: int(x.ravel()[0])),  # str: int
+        (str, lambda x: float(x.ravel()[0])),  # str: float
+        (str, lambda x: bool(x.ravel()[0])),  # str: bool
+        (str, lambda x: x.ravel().tobytes()),  # str: bytes
+        (str, lambda x: x.ravel().astype("str").tolist()),  # str: List[str]
+        (str, lambda x: x.ravel().astype("int").tolist()),  # str: List[int]
+        (str, lambda x: x.ravel().astype("float").tolist()),  # str: List[float]
+        (str, lambda x: x.ravel().astype("bool").tolist()),  # str: List[bool]
+        (str, lambda x: [x.ravel().tobytes()]),  # str: List[bytes]
         (str, lambda x: []),  # str: emptyt list
     ],
 )
@@ -329,11 +328,11 @@ def test_set_configs_to_configrecord_with_correct_types(
         (str, lambda x: x),  # str: NDArray (supported: unsupported)
         (
             str,
-            lambda x: {str(v): v for v in x.flatten()},
+            lambda x: {str(v): v for v in x.ravel()},
         ),  # str: dict[str: float] (supported: unsupported)
         (
             str,
-            lambda x: [{str(v): v for v in x.flatten()}],
+            lambda x: [{str(v): v for v in x.ravel()}],
         ),  # str: List[dict[str: float]] (supported: unsupported)
         (
             str,
@@ -341,11 +340,11 @@ def test_set_configs_to_configrecord_with_correct_types(
         ),  # str: List[mixing valid types] (supported: unsupported)
         (
             int,
-            lambda x: x.flatten().tolist(),
+            lambda x: x.ravel().tolist(),
         ),  # int: List[str] (unsupported: supported)
         (
             float,
-            lambda x: x.flatten().tolist(),
+            lambda x: x.ravel().tolist(),
         ),  # float: List[int] (unsupported: supported)
     ],
 )

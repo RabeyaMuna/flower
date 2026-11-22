@@ -19,6 +19,7 @@ from functools import partial, reduce
 from typing import Any, Callable, Union
 
 import numpy as np
+from numpy.typing import NDArray as NumpyNDArray
 
 from flwr.common import FitRes, NDArray, NDArrays, parameters_to_ndarrays
 from flwr.server.client_proxy import ClientProxy
