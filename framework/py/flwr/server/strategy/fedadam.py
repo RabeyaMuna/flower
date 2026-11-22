@@ -19,7 +19,6 @@
 Paper: arxiv.org/abs/2003.00295
 """
 
-
 from typing import Callable, Optional, Union
 
 import numpy as np
@@ -103,11 +102,7 @@ class FedAdam(FedOpt):
         initial_parameters: Parameters,
         fit_metrics_aggregation_fn: Optional[MetricsAggregationFn] = None,
         evaluate_metrics_aggregation_fn: Optional[MetricsAggregationFn] = None,
-        eta: float = 1e-1,
-        eta_l: float = 1e-1,
-        beta_1: float = 0.9,
-        beta_2: float = 0.99,
-        tau: float = 1e-9,
+        **kwargs,
     ) -> None:
         super().__init__(
             fraction_fit=fraction_fit,
@@ -122,11 +117,7 @@ class FedAdam(FedOpt):
             initial_parameters=initial_parameters,
             fit_metrics_aggregation_fn=fit_metrics_aggregation_fn,
             evaluate_metrics_aggregation_fn=evaluate_metrics_aggregation_fn,
-            eta=eta,
-            eta_l=eta_l,
-            beta_1=beta_1,
-            beta_2=beta_2,
-            tau=tau,
+            **kwargs,
         )
 
     def __repr__(self) -> str:

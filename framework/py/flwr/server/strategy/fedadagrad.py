@@ -19,7 +19,6 @@ Adaptive Federated Optimization using Adagrad.
 Paper: arxiv.org/abs/2003.00295
 """
 
-
 from typing import Callable, Optional, Union
 
 import numpy as np
@@ -118,8 +117,6 @@ class FedAdagrad(FedOpt):
             evaluate_metrics_aggregation_fn=evaluate_metrics_aggregation_fn,
             eta=eta,
             eta_l=eta_l,
-            beta_1=0.0,
-            beta_2=0.0,
             tau=tau,
         )
 

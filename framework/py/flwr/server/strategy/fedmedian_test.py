@@ -14,7 +14,6 @@
 # ==============================================================================
 """FedMedian tests."""
 
-
 from unittest.mock import MagicMock
 
 from numpy import array, float32
@@ -141,18 +140,18 @@ def test_fedmedian_num_evaluation_clients_minimum() -> None:
 def test_aggregate_fit() -> None:
     """Tests if FedMedian is aggregating correctly."""
     # Prepare
-    previous_weights: NDArrays = [array([0.1, 0.1, 0.1, 0.1], dtype=float32)]
+    previous_weights: NDArrays = [array([0.1, 0.1, 0.1, 0.1], dtype="float32")]
     strategy = FedMedian(
         initial_parameters=ndarrays_to_parameters(previous_weights),
     )
     param_0: Parameters = ndarrays_to_parameters(
-        [array([0.2, 0.2, 0.2, 0.2], dtype=float32)]
+        [array([0.2, 0.2, 0.2, 0.2], dtype="float32")]
     )
     param_1: Parameters = ndarrays_to_parameters(
-        [array([1.0, 1.0, 1.0, 1.0], dtype=float32)]
+        [array([1.0, 1.0, 1.0, 1.0], dtype="float32")]
     )
     param_2: Parameters = ndarrays_to_parameters(
-        [array([0.5, 0.5, 0.5, 0.5], dtype=float32)]
+        [array([0.5, 0.5, 0.5, 0.5], dtype="float32")]
     )
     bridge = MagicMock()
     client_0 = GrpcClientProxy(cid="0", bridge=bridge)
@@ -187,7 +186,7 @@ def test_aggregate_fit() -> None:
             ),
         ),
     ]
-    expected: NDArrays = [array([0.5, 0.5, 0.5, 0.5], dtype=float32)]
+    expected: NDArrays = [array([0.5, 0.5, 0.5, 0.5], dtype="float32")]
 
     # Execute
     actual_aggregated, _ = strategy.aggregate_fit(
