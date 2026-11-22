@@ -24,7 +24,7 @@ from flwr.common.typing import NDArrays
 # Calculates the L2-norm of a potentially ragged array
 def _get_update_norm(update: NDArrays) -> float:
     warn_deprecated_feature("`_get_update_norm` method")
-    flattened_update = update[0]
+    flattened_update: np.ndarray = update[0]
     for i in range(1, len(update)):
         flattened_update = np.append(flattened_update, update[i])
     return float(np.sqrt(np.sum(np.square(flattened_update))))
@@ -33,7 +33,7 @@ def _get_update_norm(update: NDArrays) -> float:
 def add_gaussian_noise(update: NDArrays, std_dev: float) -> NDArrays:
     """Add iid Gaussian noise to each floating point value in the update."""
     warn_deprecated_feature("`add_gaussian_noise` method")
-    update_noised = [
+    update_noised: NDArrays = [
         layer + np.random.normal(0, std_dev, layer.shape) for layer in update
     ]
     return update_noised
@@ -42,7 +42,7 @@ def add_gaussian_noise(update: NDArrays, std_dev: float) -> NDArrays:
 def clip_by_l2(update: NDArrays, threshold: float) -> tuple[NDArrays, bool]:
     """Scales the update so thats its L2 norm is upper-bound to threshold."""
     warn_deprecated_feature("`clip_by_l2` method")
-    update_norm = _get_update_norm(update)
-    scaling_factor = min(1, threshold / update_norm)
+    update_norm: float = _get_update_norm(update)
+    scaling_factor: float = min(1, threshold / update_norm)
     update_clipped: NDArrays = [layer * scaling_factor for layer in update]
     return update_clipped, (scaling_factor < 1)
