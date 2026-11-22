@@ -19,7 +19,6 @@
 Paper: arxiv.org/abs/2003.00295
 """
 
-
 from typing import Callable, Optional, Union
 
 import numpy as np
@@ -174,7 +173,7 @@ class FedAdam(FedOpt):
         # in the early rounds of FL training. This `eta_norm` is `\alpha_t` in Kingma &
         # Ba, 2014 (http://arxiv.org/abs/1412.6980) "Adam: A Method for Stochastic
         # Optimization" in the formula line right before Section 2.1.
-        eta_norm = (
+        eta_norm = np.array(
             self.eta
             * np.sqrt(1 - np.power(self.beta_2, server_round + 1.0))
             / (1 - np.power(self.beta_1, server_round + 1.0))

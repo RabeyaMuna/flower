@@ -14,7 +14,6 @@
 # ==============================================================================
 """Unit tests for Array."""
 
-
 import sys
 import unittest
 from io import BytesIO
@@ -29,11 +28,10 @@ from flwr.common.serde import array_to_proto
 
 from ..constant import SType
 from ..inflatable import get_object_body, get_object_type_from_object_content
-from ..typing import NDArray
 from .array import Array
 
 
-def _get_buffer_from_ndarray(array: NDArray) -> bytes:
+def _get_buffer_from_ndarray(array: np.ndarray) -> bytes:
     """Return a bytes buffer from a given NumPy array."""
     buffer = BytesIO()
     np.save(buffer, array, allow_pickle=False)
@@ -172,7 +170,7 @@ class TestArray(unittest.TestCase):
 
     def test_deflate_and_inflate(self) -> None:
         """Ensure an Array can be (de)inflated correctly."""
-        arr = Array(np.random.randn(5, 5))
+        arr = Array.from_numpy_ndarray(np.random.randn(5, 5))
 
         # Assert
         # Array has no children

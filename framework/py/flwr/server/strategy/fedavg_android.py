@@ -17,8 +17,7 @@
 Paper: arxiv.org/abs/1602.05629
 """
 
-
-from typing import Callable, Optional, Union, cast
+from typing import Callable, Optional, Union
 
 import numpy as np
 
@@ -241,4 +240,4 @@ class FedAvgAndroid(Strategy):
     def bytes_to_ndarray(self, tensor: bytes) -> NDArray:
         """Deserialize NumPy array from bytes."""
         ndarray_deserialized = np.frombuffer(tensor, dtype=np.float32)
-        return cast(NDArray, ndarray_deserialized)
+        return ndarray_deserialized
