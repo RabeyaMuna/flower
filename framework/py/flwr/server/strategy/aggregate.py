@@ -357,23 +357,23 @@ def _aggregate_n_closest_weights(
         Averaged (element-wise) beta weights that have the closest distance to
          reference weights
     """
-    list_of_weights = [weights for weights, num_examples in results]
-    aggregated_weights = []
+    list_of_weights: list[NDArrays] = [weights for weights, num_examples in results]
+    aggregated_weights: NDArrays = []
 
     for layer_id, layer_weights in enumerate(reference_weights):
-        other_weights_layer_list = []
+        other_weights_layer_list: list[NDArray] = []
         for other_w in list_of_weights:
-            other_weights_layer = other_w[layer_id]
+            other_weights_layer: NDArray = other_w[layer_id]
             other_weights_layer_list.append(other_weights_layer)
-        other_weights_layer_np = np.array(other_weights_layer_list)
-        diff_np = np.abs(layer_weights - other_weights_layer_np)
+        other_weights_layer_np: NDArray = np.array(other_weights_layer_list)
+        diff_np: NDArray = np.abs(layer_weights - other_weights_layer_np)
         # Create indices of the smallest differences
         # We do not need the exact order but just the beta closest weights
         # therefore np.argpartition is used instead of np.argsort
-        indices = np.argpartition(diff_np, kth=beta_closest - 1, axis=0)
+        indices: NDArray = np.argpartition(diff_np, kth=beta_closest - 1, axis=0)
         # Take the weights (coordinate-wise) corresponding to the beta of the
         # closest distances
-        beta_closest_weights = np.take_along_axis(
+        beta_closest_weights: NDArray = np.take_along_axis(
             other_weights_layer_np, indices=indices, axis=0
         )[:beta_closest]
         aggregated_weights.append(np.mean(beta_closest_weights, axis=0))
