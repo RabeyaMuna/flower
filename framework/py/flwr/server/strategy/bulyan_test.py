@@ -14,7 +14,6 @@
 # ==============================================================================
 """Bulyan tests."""
 
-
 from unittest.mock import MagicMock
 
 from numpy import array, float32
@@ -40,8 +39,8 @@ def test_aggregate_fit() -> None:
     previous_weights: NDArrays = [array([0.1, 0.1, 0.1, 0.1], dtype=float32)]
     strategy = Bulyan(
         initial_parameters=ndarrays_to_parameters(previous_weights),
-        num_malicious_clients=0,
-        to_keep=0,
+        num_malicious_clients=1,
+        to_keep=1,
     )
     param_0: Parameters = ndarrays_to_parameters(
         [array([0.2, 0.2, 0.2, 0.2], dtype=float32)]
@@ -117,7 +116,7 @@ def test_aggregate_fit() -> None:
             ),
         ),
     ]
-    coordinate = (0.2 + 0.5 + 0.7 + 12.0 + 0.1 + 0.1) / 6
+    coordinate = float((0.2 + 0.5 + 0.7 + 12.0 + 0.1 + 0.1) / 6)
     expected: NDArrays = [array([coordinate] * 4, dtype=float32)]
 
     # Execute
