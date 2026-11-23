@@ -14,7 +14,6 @@
 # ==============================================================================
 """RecordDict tests."""
 
-
 import pickle
 from collections import OrderedDict
 from copy import deepcopy
@@ -169,7 +168,7 @@ def test_set_parameters_with_incorrect_types(
     }
 
     with pytest.raises(TypeError):
-        arr_record.update(array_dict)  # type: ignore
+        arr_record.update(array_dict)
 
 
 @pytest.mark.parametrize(
@@ -250,7 +249,7 @@ def test_set_metrics_to_metricrecord_with_incorrect_types(
     )
 
     with pytest.raises(TypeError):
-        m_record.update(my_metrics)  # type: ignore
+        m_record.update(my_metrics)
 
 
 @pytest.mark.parametrize(

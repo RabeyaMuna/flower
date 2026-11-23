@@ -17,7 +17,6 @@
 Paper: arxiv.org/abs/1602.05629
 """
 
-
 from typing import Callable, Optional, Union, cast
 
 import numpy as np
@@ -32,6 +31,7 @@ from flwr.common import (
     Parameters,
     Scalar,
 )
+from flwr.proto.recorddict_pb2 import RecordDict
 from flwr.server.client_manager import ClientManager
 from flwr.server.client_proxy import ClientProxy
 
@@ -228,7 +228,7 @@ class FedAvgAndroid(Strategy):
     def ndarrays_to_parameters(self, ndarrays: NDArrays) -> Parameters:
         """Convert NumPy ndarrays to parameters object."""
         tensors = [self.ndarray_to_bytes(ndarray) for ndarray in ndarrays]
-        return Parameters(tensors=tensors, tensor_type="numpy.nda")
+        return Parameters(tensors=tensors, tensor_type="numpy.ndarray")
 
     def parameters_to_ndarrays(self, parameters: Parameters) -> NDArrays:
         """Convert parameters object to NumPy weights."""
