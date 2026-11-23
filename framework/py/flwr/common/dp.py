@@ -14,7 +14,6 @@
 # ==============================================================================
 """Building block functions for DP algorithms."""
 
-
 import numpy as np
 
 from flwr.common.logger import warn_deprecated_feature
@@ -24,9 +23,7 @@ from flwr.common.typing import NDArrays
 # Calculates the L2-norm of a potentially ragged array
 def _get_update_norm(update: NDArrays) -> float:
     warn_deprecated_feature("`_get_update_norm` method")
-    flattened_update = update[0]
-    for i in range(1, len(update)):
-        flattened_update = np.append(flattened_update, update[i])
+    flattened_update = np.concatenate(update)
     return float(np.sqrt(np.sum(np.square(flattened_update))))
 
 

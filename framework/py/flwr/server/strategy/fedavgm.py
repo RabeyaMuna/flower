@@ -17,7 +17,6 @@
 Paper: arxiv.org/pdf/1909.06335.pdf
 """
 
-
 from logging import WARNING
 from typing import Callable, Optional, Union
 
@@ -56,7 +55,7 @@ class FedAvgM(FedAvg):
         Minimum number of clients used during validation. Defaults to 2.
     min_available_clients : int, optional
         Minimum number of total clients in the system. Defaults to 2.
-    evaluate_fn : Optional[Callable[[int, NDArrays, Dict[str, Scalar]], Optional[Tuple[float, Dict[str, Scalar]]]]]
+    evaluate_fn: Optional[Callable[[int, NDArrays, Dict[str, Scalar]], Optional[Tuple[float, Dict[str, Scalar]]]]]
         Optional function used for validation. Defaults to None.
     on_fit_config_fn : Callable[[int], Dict[str, Scalar]], optional
         Function used to configure training. Defaults to None.
@@ -152,9 +151,9 @@ class FedAvgM(FedAvg):
         # https://pytorch.org/docs/stable/generated/torch.optim.SGD.html
         if self.server_opt:
             # You need to initialize the model
-            assert (
-                self.initial_parameters is not None
-            ), "When using server-side optimization, model needs to be initialized."
+            assert self.initial_parameters is not None, (
+                "When using server-side optimization, model needs to be initialized."
+            )
             initial_weights = parameters_to_ndarrays(self.initial_parameters)
 
             # remember that updates are the opposite of gradients
@@ -166,9 +165,9 @@ class FedAvgM(FedAvg):
             ]
             if self.server_momentum > 0.0:
                 if server_round > 1:
-                    assert (
-                        self.momentum_vector
-                    ), "Momentum should have been created on round 1."
+                    assert self.momentum_vector, (
+                        "Momentum should have been created on round 1."
+                    )
                     self.momentum_vector = [
                         self.server_momentum * x + y
                         for x, y in zip(self.momentum_vector, pseudo_gradient)
